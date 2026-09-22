@@ -27,16 +27,48 @@ function showPage(page) {
   }
 
   if (page === "investing") {
-    content.innerHTML = `
-      <div class="extra-card">
-        <h2>📊 INVESTING</h2>
-        <p>Halaman investasi versi demo.</p>
-        <div class="demo-box">
-          <b>DEMO PLAN</b>
-          <span>Informasi paket hanya untuk tampilan.</span>
+  content.innerHTML = `
+    <div class="extra-card investing-page">
+
+      <h2>📊 INVESTING</h2>
+      <p class="sub">Pilih tampilan paket demo</p>
+
+      <div class="plan">
+        <div>
+          <b>STARTER</b>
+          <small>Contoh paket investasi</small>
         </div>
+        <strong>DEMO</strong>
       </div>
-    `;
+
+      <div class="plan">
+        <div>
+          <b>STANDARD</b>
+          <small>Contoh paket investasi</small>
+        </div>
+        <strong>DEMO</strong>
+      </div>
+
+      <div class="plan">
+        <div>
+          <b>PREMIUM</b>
+          <small>Contoh paket investasi</small>
+        </div>
+        <strong>DEMO</strong>
+      </div>
+
+      <button class="demo-button" onclick="demo('Paket Demo')">
+        LIHAT DETAIL
+      </button>
+
+    </div>
+  `;
+
+  content.scrollIntoView({behavior:"smooth"});
+}
+
+ 
+    
     content.scrollIntoView({behavior:"smooth"});
   }
 
