@@ -402,3 +402,28 @@ nav button:first-child {
   color: #080808;
   font-weight: bold;
 }
+.team-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.team-summary div {
+  padding: 12px 5px;
+  text-align: center;
+  border: 1px solid #60491e;
+  border-radius: 10px;
+  background: #0b1117;
+}
+
+.team-summary b {
+  display: block;
+  color: #2dc2e4;
+  font-size: 15px;
+}
+
+.team-summary small {
+  color: #aaa;
+  font-size: 8px;
+}
