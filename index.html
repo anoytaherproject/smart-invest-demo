@@ -2,785 +2,337 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Zenith Nexus Demo</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#071018">
+<title>Zenith Nexus â€” Demo</title>
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+:root{
+  --bg:#050a10;
+  --panel:#0a121b;
+  --panel2:#0d1722;
+  --line:#263746;
+  --gold:#e8bd45;
+  --gold2:#f4d36b;
+  --text:#f5f7fa;
+  --muted:#9da8b3;
+  --cyan:#29c7ed;
+  --green:#28c77b;
+  --red:#ff6262;
 }
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-  background:#070c12;
-  color:#eee;
-  font-family:Arial,sans-serif;
+  min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
 }
-
-.app{
-  max-width:720px;
-  margin:auto;
-  min-height:100vh;
-  padding-bottom:100px;
-}
-
-/* HEADER */
+button{font:inherit}
+.app{width:100%;max-width:760px;margin:auto;min-height:100vh;padding-bottom:105px}
 header{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  padding:22px 25px;
-  border-bottom:1px solid #8b6a1c;
-  background:#101821;
+  position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;
+  padding:16px 20px;background:rgba(7,12,18,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid #765d1e;
 }
-
 .logo{
-  width:70px;
-  height:70px;
-  border:3px solid #e5b93f;
-  border-radius:15px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  color:#e5b93f;
-  font-weight:bold;
+  width:52px;height:52px;border:2px solid var(--gold);border-radius:14px;
+  display:grid;place-items:center;color:var(--gold);font-weight:800;font-size:18px;
 }
-
-header b{
-  display:block;
-  color:#e5b93f;
-  font-size:25px;
-}
-
-header small{
-  color:#aaa;
-  letter-spacing:4px;
-}
-
-.bell{
-  margin-left:auto;
-  font-size:35px;
-}
-
-/* MAIN */
-main{
-  padding:25px;
-}
-
-/* HERO */
+.header-title b{display:block;color:var(--gold2);font-size:20px}
+.header-title small{color:#89939d;letter-spacing:2px;font-size:9px}
+.header-bell{margin-left:auto;border:1px solid var(--line);background:var(--panel);
+  color:white;border-radius:12px;width:42px;height:42px;cursor:pointer}
+main{padding:20px}
 .hero{
-  min-height:360px;
-  padding:35px 27px;
-  border:1px solid #b88a21;
-  border-radius:28px;
-  background:
-    radial-gradient(circle at 80% 50%,#123b52,#071019 60%);
-  box-shadow:0 0 20px #806018;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  overflow:hidden;
+  position:relative;overflow:hidden;min-height:300px;padding:30px 25px;
+  border:1px solid #80651f;border-radius:28px;
+  background:radial-gradient(circle at 90% 50%,#12425a,#071018 58%);
+  box-shadow:0 10px 35px rgba(0,0,0,.25);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
 }
-
-.hero small{
-  color:#e5b93f;
-  font-size:18px;
-  font-weight:bold;
-}
-
-.hero h1{
-  margin-top:40px;
-  font-size:40px;
-  line-height:1;
-  color:#f0c54c;
-}
-
-.hero h1 span{
-  color:#f0c54c;
-}
-
-.hero p{
-  margin-top:30px;
-  color:#ccc;
-  font-size:18px;
-  line-height:1.7;
-}
-
-.chart{
-  font-size:100px;
-}
-
-/* BONUS */
-.bonus{
-  margin-top:25px;
-  padding:20px;
-  border:1px solid #896719;
-  border-radius:25px;
-  background:#090f15;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  cursor:pointer;
-}
-
-.bonus:first-letter{
-  font-size:35px;
-}
-
-.bonus b{
-  background:#e5b93f;
-  color:#111;
-  padding:7px 13px;
-  border-radius:8px;
-}
-
-.bonus p{
-  margin-top:10px;
-  color:#aaa;
-}
-
-.bonus strong{
-  margin-left:auto;
-  font-size:40px;
-  color:#e5b93f;
-}
-
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-top:25px;
-}
-
+.hero small{color:var(--gold2);font-weight:700;letter-spacing:1px}
+.hero h1{margin-top:26px;font-size:38px;line-height:1.05}
+.hero h1 span{color:var(--gold2)}
+.hero p{margin-top:18px;color:#c5cbd0;line-height:1.6}
+.chart{font-size:82px;filter:drop-shadow(0 0 15px #176078)}
+.section-title{margin:28px 0 12px;font-size:18px;color:var(--gold2)}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .card{
-  min-height:200px;
-  padding:25px;
-  border:1px solid #80621d;
-  border-radius:25px;
-  background:#091017;
-  cursor:pointer;
+  min-height:155px;padding:20px;border:1px solid #765d1e;border-radius:22px;
+  background:var(--panel);cursor:pointer;transition:.2s;
 }
-
-.card:first-child,
-.card:nth-child(2){
-  font-size:35px;
-}
-
-.card b{
-  display:block;
-  margin-top:25px;
-  color:#e5b93f;
-  font-size:20px;
-}
-
-.card small{
-  display:block;
-  margin-top:10px;
-  color:#aaa;
-  font-size:15px;
-}
-
-.card strong{
-  float:right;
-  color:#e5b93f;
-  font-size:40px;
-}
-
-/* SPIN */
+.card:active,.action:active,.nav-btn:active{transform:scale(.98)}
+.card .icon{font-size:32px}
+.card b{display:block;margin-top:18px;color:var(--gold2);font-size:18px}
+.card p{margin-top:7px;color:var(--muted);font-size:13px;line-height:1.4}
+.card .arrow{float:right;margin-top:-5px;color:var(--gold);font-size:32px}
 .spin{
-  margin-top:25px;
-  padding:25px;
-  border:1px solid #80621d;
-  border-radius:25px;
-  background:#091017;
-  display:flex;
-  align-items:center;
-  gap:20px;
-  cursor:pointer;
+  margin-top:14px;padding:20px;border:1px solid #765d1e;border-radius:22px;
+  background:var(--panel);display:flex;align-items:center;gap:18px;cursor:pointer;
 }
-
 .wheel{
-  width:100px;
-  height:100px;
-  border:3px solid #e5b93f;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#e5b93f;
-  font-size:45px;
+  flex:0 0 82px;width:82px;height:82px;border:3px solid var(--gold);
+  border-radius:50%;display:grid;place-items:center;color:var(--gold);
+  font-size:40px;transition:transform 1s cubic-bezier(.2,.8,.2,1);
 }
-
-.spin h2{
-  color:#e5b93f;
-  font-size:30px;
-}
-
-.spin p{
-  color:#aaa;
-  margin-top:10px;
-}
-
-.spin strong{
-  margin-left:auto;
-  font-size:40px;
-  color:#e5b93f;
-}
-
-/* STATS */
+.spin h2{color:var(--gold2);font-size:24px}
+.spin p{color:var(--muted);margin-top:6px;font-size:13px}
+.spin .arrow{margin-left:auto;color:var(--gold);font-size:32px}
 .stats{
-  margin-top:25px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  border:1px solid #263440;
-  border-radius:25px;
-  overflow:hidden;
+  display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px;
+  border:1px solid var(--line);border-radius:22px;overflow:hidden;
 }
-
-.stats div{
-  min-height:125px;
-  padding:18px 8px;
-  text-align:center;
-  border-right:1px solid #263440;
-  border-bottom:1px solid #263440;
-  font-size:25px;
+.stat{min-height:108px;padding:15px 6px;text-align:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat:nth-child(4n){border-right:0}
+.stat:nth-child(n+5){border-bottom:0}
+.stat .emoji{font-size:22px}.stat small{display:block;color:var(--muted);font-size:10px;margin:8px 0}
+.stat b{color:var(--cyan);font-size:17px}
+.page{display:none}.page.active{display:block}
+.page-head{margin-bottom:18px}.page-head h2{color:var(--gold2);font-size:27px}.page-head p{color:var(--muted);margin-top:6px}
+.panel{padding:18px;border:1px solid var(--line);border-radius:20px;background:var(--panel);margin-bottom:12px}
+.market-row{display:flex;align-items:center;gap:12px}
+.coin-icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#16232f;color:var(--gold);font-weight:800;font-size:21px}
+.coin-info{flex:1}.coin-info b{display:block}.coin-info small{color:#737f89}
+.price{text-align:right}.price b{display:block;font-size:14px}.up{color:var(--green)!important}.down{color:var(--red)!important}
+.action{
+  border:0;border-radius:10px;padding:9px 12px;background:var(--gold);color:#111;
+  font-weight:800;cursor:pointer
 }
-
-.stats small{
-  display:block;
-  margin:10px 0;
-  color:#aaa;
-  font-size:12px;
+.full{width:100%;padding:13px;margin-top:8px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.summary .panel{text-align:center;margin:0}.summary b{display:block;font-size:22px;color:var(--cyan)}.summary small{color:var(--muted)}
+.menu-item{display:flex;align-items:center;gap:13px;padding:16px;border-bottom:1px solid var(--line);cursor:pointer}
+.menu-item:last-child{border-bottom:0}.menu-item .mi-icon{font-size:23px;width:30px}.menu-item div{flex:1}.menu-item small{display:block;color:var(--muted);margin-top:3px}.menu-item strong{color:var(--gold);font-size:25px}
+.notice{padding:14px;border:1px solid #66531f;border-radius:14px;background:#12140e;color:#d9d0a9;font-size:13px;line-height:1.5;margin-bottom:15px}
+.modal{
+  position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;
+  background:rgba(0,0,0,.65);padding:15px
 }
-
-.stats b{
-  color:#27c7ed;
-  font-size:20px;
+.modal.show{display:flex}.modal-box{
+  width:100%;max-width:500px;background:#0b141d;border:1px solid #80651f;
+  border-radius:24px;padding:22px;box-shadow:0 20px 60px #000
 }
-
-.coin{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:16px;
-  margin-bottom:12px;
-  background:#0d151d;
-  border:1px solid #293744;
-  border-radius:18px;
+.modal-box h3{color:var(--gold2);margin-bottom:12px}.modal-box p{color:var(--muted);line-height:1.5}
+.input{
+  width:100%;margin:15px 0;padding:13px;border-radius:12px;border:1px solid var(--line);
+  background:#071019;color:white;outline:none
 }
-
-.coin-icon{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#17232e;
-  color:#e5b93f;
-  font-size:25px;
-  font-weight:bold;
-}
-
-.coin-info{
-  flex:1;
-}
-
-.coin-info b{
-  display:block;
-  font-size:16px;
-}
-
-.coin-info small{
-  color:#777;
-}
-
-.coin-price{
-  text-align:right;
-}
-
-.coin-price b{
-  display:block;
-  font-size:15px;
-}
-
-.coin-price small{
-  font-size:12px;
-}
-
-.up{
-  color:#22c77a;
-}
-
-.down{
-  color:#ff5c5c;
-}
-
-.coin button{
-  border:1px solid #e5b93f;
-  background:#e5b93f;
-  color:#111;
-  border-radius:10px;
-  padding:9px 12px;
-  font-weight:bold;
-}
-/* PAGE */
-.extra-page{
-  display:none;
-  margin-top:25px;
-  padding:30px;
-  border:1px solid #80621d;
-  border-radius:25px;
-  background:#091017;
-}
-
-.extra-page h2{
-  color:#e5b93f;
-  margin-bottom:15px;
-}
-
-.extra-page p{
-  color:#aaa;
-  line-height:1.7;
-}
-
-/* NAV */
+.close{background:transparent!important;color:#aaa!important;border:1px solid var(--line)!important}
 nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:720px;
-  height:90px;
-  background:#080d13;
-  border-top:1px solid #29333c;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  z-index:99;
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:30;
+  width:100%;max-width:760px;height:88px;display:grid;grid-template-columns:repeat(4,1fr);
+  background:rgba(6,11,17,.97);border-top:1px solid #29333c;padding-bottom:env(safe-area-inset-bottom)
 }
-
-nav button{
-  border:0;
-  background:transparent;
-  color:#aaa;
-  font-size:28px;
-  cursor:pointer;
+.nav-btn{border:0;background:transparent;color:#89929a;cursor:pointer;font-size:25px}
+.nav-btn small{display:block;margin-top:4px;font-size:12px}.nav-btn.active{color:var(--gold2)}
+.toast{
+  position:fixed;left:50%;bottom:105px;transform:translate(-50%,20px);
+  opacity:0;pointer-events:none;z-index:60;background:#17232e;color:white;
+  border:1px solid #465866;border-radius:12px;padding:12px 16px;transition:.25s;white-space:nowrap
 }
-
-nav button small{
-  display:block;
-  margin-top:5px;
-  font-size:14px;
-}
-
-nav button.active{
-  color:#e5b93f;
-}
-
-/* MOBILE */
-@media(max-width:500px){
-
-  .app{
-    width:100%;
-  }
-
-  header b{
-    font-size:20px;
-  }
-
-  header small{
-    font-size:9px;
-  }
-
-  .hero{
-    min-height:360px;
-  }
-
-  .hero h1{
-    font-size:36px;
-  }
-
-  .chart{
-    font-size:65px;
-  }
-
-  .stats{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .stats div{
-    min-height:120px;
-    font-size:20px;
-  }
-
-  .stats small{
-    font-size:10px;
-  }
-
-  .stats b{
-    font-size:17px;
-  }
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:520px){
+  main{padding:14px}.hero{min-height:300px;padding:24px 20px}.hero h1{font-size:31px}
+  .chart{font-size:60px}.stats{grid-template-columns:repeat(4,1fr)}.stat{min-height:100px}
+  .quick-grid{gap:10px}.card{padding:16px}.card b{font-size:16px}.card p{font-size:12px}
+  .summary{grid-template-columns:1fr 1fr}.summary .panel:last-child{grid-column:1/-1}
 }
 </style>
 </head>
-
 <body>
-
 <div class="app">
-
 <header>
   <div class="logo">ZN</div>
-
-  <div>
-    <b>ZENITH NEXUS</b>
-    <small>SMART INVEST • DEMO</small>
-  </div>
-
-  <div class="bell">🔔</div>
+  <div class="header-title"><b>ZENITH NEXUS</b><small>SMART INVEST â€¢ DEMO</small></div>
+  <button class="header-bell" onclick="notify('Tidak ada notifikasi baru.')">ðŸ””</button>
 </header>
 
 <main>
-
-<!-- HOME -->
-<section id="homePage">
-
-  <section class="hero">
+<section id="homePage" class="page active">
+  <div class="hero">
     <div>
-      <small>ZN • SMART INVEST</small>
-
-      <h1>
-        INVEST TODAY<br>
-        <span>BUILD TOMORROW</span>
-      </h1>
-
-      <p>
-        Contoh dashboard investasi untuk latihan web.
-      </p>
+      <small>ZN â€¢ SMART INVEST</small>
+      <h1>INVEST TODAY<br><span>BUILD TOMORROW</span></h1>
+      <p>Dashboard simulasi investasi untuk latihan antarmuka web.</p>
     </div>
-
-    <div class="chart">📈</div>
-  </section>
-
-  <div class="bonus" onclick="demo('BONUS')">
-    🎁
-
-    <div>
-      <b>BONUS</b>
-      <p>Contoh promo deposit untuk UI demo</p>
-    </div>
-
-    <strong>›</strong>
+    <div class="chart">ðŸ“ˆ</div>
   </div>
 
-  <div class="cards">
-
-    <div class="card" onclick="demo('Kode Hadiah')">
-      🎁
-      <b>KODE HADIAH</b>
-      <small>Contoh fitur bonus</small>
-      <strong>›</strong>
+  <div class="section-title">Quick Actions</div>
+  <div class="quick-grid">
+    <div class="card" onclick="openModal('Kode Hadiah')">
+      <div class="icon">ðŸŽ</div><b>KODE HADIAH</b><p>Masukkan kode bonus demo.</p><span class="arrow">â€º</span>
     </div>
-
-    <div class="card" onclick="demo('Check-in')">
-      ⏱️
-      <b>CHECK-IN</b>
-      <small>Contoh fitur harian</small>
-      <strong>›</strong>
+    <div class="card" onclick="checkIn()">
+      <div class="icon">â±ï¸</div><b>CHECK-IN</b><p>Simulasi check-in harian.</p><span class="arrow">â€º</span>
     </div>
-
   </div>
 
   <div class="spin" onclick="spinLucky()">
-
-    <div class="wheel">✦</div>
-
-    <div>
-      <h2>LUCKY SPIN</h2>
-      <p>Demo interaksi UI — tanpa hadiah uang</p>
-    </div>
-
-    <strong>›</strong>
-
+    <div id="wheel" class="wheel">âœ¦</div>
+    <div><h2>LUCKY SPIN</h2><p>Demo interaksi UI â€” tanpa hadiah uang.</p></div>
+    <span class="arrow">â€º</span>
   </div>
 
-  <section class="stats">
-
-    <div>
-      🪙
-      <small>Total Deposit</small>
-      <b>$0</b>
-    </div>
-
-    <div>
-      📊
-      <small>Total Investment</small>
-      <b>$0</b>
-    </div>
-
-    <div>
-      📈
-      <small>Total Profit</small>
-      <b>$0</b>
-    </div>
-
-    <div>
-      💳
-      <small>Total Withdraw</small>
-      <b>$0</b>
-    </div>
-
-    <div>
-      👥
-      <small>Total Reference</small>
-      <b>0</b>
-    </div>
-
-    <div>
-      🏆
-      <small>Team Wins</small>
-      <b>$0</b>
-    </div>
-
-    <div>
-      🎁
-      <small>Deposit Bonus</small>
-      <b>$0</b>
-    </div>
-
-    <div>
-      ♛
-      <small>Investment Bonus</small>
-      <b>$0</b>
-    </div>
-
-  </section>
-
+  <div class="stats">
+    <div class="stat"><div class="emoji">ðŸª™</div><small>Total Deposit</small><b>$0</b></div>
+    <div class="stat"><div class="emoji">ðŸ“Š</div><small>Total Investment</small><b>$0</b></div>
+    <div class="stat"><div class="emoji">ðŸ“ˆ</div><small>Total Profit</small><b>$0</b></div>
+    <div class="stat"><div class="emoji">ðŸ’³</div><small>Total Withdraw</small><b>$0</b></div>
+    <div class="stat"><div class="emoji">ðŸ‘¥</div><small>Total Reference</small><b>0</b></div>
+    <div class="stat"><div class="emoji">ðŸ†</div><small>Team Wins</small><b>$0</b></div>
+    <div class="stat"><div class="emoji">ðŸŽ</div><small>Deposit Bonus</small><b>$0</b></div>
+    <div class="stat"><div class="emoji">â™›</div><small>Investment Bonus</small><b>$0</b></div>
+  </div>
 </section>
 
+<section id="investingPage" class="page">
+  <div class="page-head"><h2>ðŸ“Š CRYPTO MARKET</h2><p>Data contoh untuk tampilan demo.</p></div>
+  <div class="notice">âš ï¸ Semua transaksi di halaman ini hanya simulasi. Tidak ada deposit atau transaksi uang nyata.</div>
+  <div id="market"></div>
+</section>
 
-<!-- HALAMAN DINAMIS -->
-<section id="pageContent" class="extra-page"></section>
+<section id="teamPage" class="page">
+  <div class="page-head"><h2>ðŸ‘¥ MY TEAM</h2><p>Dashboard referral versi demo.</p></div>
+  <div class="summary">
+    <div class="panel"><b>0</b><small>Members</small></div>
+    <div class="panel"><b>$0</b><small>Team Wins</small></div>
+    <div class="panel"><b>$0</b><small>Bonus</small></div>
+  </div>
+  <div class="panel">
+    <div style="font-size:22px;margin-bottom:7px">ðŸ‘¤ MEMBER LIST</div>
+    <p style="color:var(--muted)">Belum ada anggota pada demo.</p>
+    <button class="action full" onclick="shareReferral()">BAGIKAN REFERRAL</button>
+  </div>
+</section>
 
+<section id="menuPage" class="page">
+  <div class="page-head"><h2>â˜° MENU</h2><p>Pengaturan aplikasi demo.</p></div>
+  <div class="panel" style="padding:0">
+    <div class="menu-item" onclick="notify('Profil demo dibuka.')"><span class="mi-icon">ðŸ‘¤</span><div><b>Profile</b><small>Informasi akun demo</small></div><strong>â€º</strong></div>
+    <div class="menu-item" onclick="notify('Pengaturan demo dibuka.')"><span class="mi-icon">âš™ï¸</span><div><b>Settings</b><small>Pengaturan aplikasi</small></div><strong>â€º</strong></div>
+    <div class="menu-item" onclick="notify('Keamanan demo dibuka.')"><span class="mi-icon">ðŸ”</span><div><b>Security</b><small>Pengaturan keamanan</small></div><strong>â€º</strong></div>
+    <div class="menu-item" onclick="notify('Tidak ada bantuan baru.')"><span class="mi-icon">â“</span><div><b>Help</b><small>Informasi bantuan</small></div><strong>â€º</strong></div>
+    <div class="menu-item" onclick="notify('Zenith Nexus Demo v2.0')"><span class="mi-icon">â„¹ï¸</span><div><b>About</b><small>Informasi aplikasi</small></div><strong>â€º</strong></div>
+  </div>
+</section>
 </main>
 
-
-<!-- NAVIGASI -->
 <nav>
-
-  <button onclick="showPage('home')" id="homeBtn" class="active">
-    ⌂
-    <small>Home</small>
-  </button>
-
-  <button onclick="showPage('investing')" id="investBtn">
-    ▥
-    <small>Investing</small>
-  </button>
-
-  <button onclick="showPage('team')" id="teamBtn">
-    ♧
-    <small>My Team</small>
-  </button>
-
-  <button onclick="showPage('menu')" id="menuBtn">
-    ☰
-    <small>Menu</small>
-  </button>
-
+  <button id="navHome" class="nav-btn active" onclick="showPage('home')">âŒ‚<small>Home</small></button>
+  <button id="navInvest" class="nav-btn" onclick="showPage('investing')">â–¥<small>Investing</small></button>
+  <button id="navTeam" class="nav-btn" onclick="showPage('team')">â™§<small>My Team</small></button>
+  <button id="navMenu" class="nav-btn" onclick="showPage('menu')">â˜°<small>Menu</small></button>
 </nav>
-
 </div>
 
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <h3 id="modalTitle">Demo</h3>
+    <p id="modalText">Fitur demo.</p>
+    <input id="giftInput" class="input" placeholder="Masukkan kode hadiah" style="display:none">
+    <button id="modalAction" class="action full" onclick="modalAction()">OK</button>
+    <button class="action full close" onclick="closeModal()">TUTUP</button>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
 
 <script>
+let rotation = 0;
+let modalType = '';
 
-function investCoin(coin, price){
+const market = [
+  ['â‚¿','Bitcoin','BTC','$67,250','+2.41%'],
+  ['Îž','Ethereum','ETH','$2,590','+1.85%'],
+  ['â—Ž','Solana','SOL','$148.20','+3.72%'],
+  ['X','XRP','XRP','$0.51','-0.63%']
+];
 
-  const harga = Number(
-    price.replace("$","").replace(",","")
-  );
-
-  const modal = 100;
-
-  const jumlah = modal / harga;
-
-  alert(
-    "INVESTASI DEMO\n\n" +
-    "Coin: " + coin + "\n" +
-    "Harga: " + price + "\n" +
-    "Modal simulasi: $100\n" +
-    "Jumlah coin: " + jumlah.toFixed(6) + "\n\n" +
-    "⚠️ Hanya simulasi UI."
-  );
+function renderMarket(){
+  document.getElementById('market').innerHTML = market.map(c => `
+    <div class="panel">
+      <div class="market-row">
+        <div class="coin-icon">${c[0]}</div>
+        <div class="coin-info"><b>${c[1]}</b><small>${c[2]}</small></div>
+        <div class="price"><b>${c[3]}</b><small class="${c[4][0]==='-'?'down':'up'}">${c[4]}</small></div>
+        <button class="action" onclick="investCoin('${c[1]}','${c[3]}')">Invest</button>
+      </div>
+    </div>`).join('');
 }
+renderMarket();
 
- 
 function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
 
-  const home = document.getElementById("homePage");
-  const content = document.getElementById("pageContent");
+  const map = {
+    home:['homePage','navHome'],
+    investing:['investingPage','navInvest'],
+    team:['teamPage','navTeam'],
+    menu:['menuPage','navMenu']
+  };
 
-  const buttons = document.querySelectorAll("nav button");
-
-  buttons.forEach(button => {
-    button.classList.remove("active");
-  });
-
-
-    if(page === "home"){
-    home.style.display = "block";
-    content.style.display = "none";
-
-    document.getElementById("homeBtn").classList.add("active");
-
-  }
-
-  else if(page === "investing"){
-
-  home.style.display = "none";
-  content.style.display = "block";
-
-  content.innerHTML = `
-    <h2>CRYPTO MARKET</h2>
-
-    <p style="color:#aaa;margin-bottom:20px;">
-      Market Crypto — Demo
-    </p>
-
-    <div class="coin">
-      <div class="coin-icon">₿</div>
-      <div class="coin-info">
-        <b>Bitcoin</b>
-        <small>BTC</small>
-      </div>
-      <div class="coin-price">
-        <b>$67,250</b>
-        <small class="up">+2.41%</small>
-      </div>
-      <button onclick="investCoin('Bitcoin','$67,250')">
-  Invest
-</button>
-
-    </div>
-
-    <div class="coin">
-      <div class="coin-icon">Ξ</div>
-      <div class="coin-info">
-        <b>Ethereum</b>
-        <small>ETH</small>
-      </div>
-      <div class="coin-price">
-        <b>$2,590</b>
-        <small class="up">+1.85%</small>
-      </div>
-      <button onclick="investCoin('Ethereum','$2,590')">
-  Invest
-</button>
-    </div>
-
-    <div class="coin">
-      <div class="coin-icon">◎</div>
-      <div class="coin-info">
-        <b>Solana</b>
-        <small>SOL</small>
-      </div>
-      <div class="coin-price">
-        <b>$148.20</b>
-        <small class="up">+3.72%</small>
-      </div>
-      <button onclick="investCoin('Solana','$148.20')">
-  Invest
-</button>
-
-    </div>
-
-    <div class="coin">
-      <div class="coin-icon">X</div>
-      <div class="coin-info">
-        <b>XRP</b>
-        <small>XRP</small>
-      </div>
-      <div class="coin-price">
-        <b>$0.51</b>
-        <small class="down">-0.63%</small>
-      </div>
-      <button onclick="investCoin('XRP','$0.51')">
-  Invest
-</button>
-
-    </div>
-
-    <p style="margin-top:20px;color:#777;font-size:13px;">
-      ⚠️ Data di atas hanya contoh untuk tampilan website.
-    </p>
-  `;
-
-  document.getElementById("investBtn").classList.add("active");
-
+  const ids = map[page] || map.home;
+  document.getElementById(ids[0]).classList.add('active');
+  document.getElementById(ids[1]).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-  }
-
-  else if(page === "menu"){
-
-    home.style.display = "none";
-    content.style.display = "block";
-
-    content.innerHTML = `
-      <h2>MENU</h2>
-      <p>
-        Menu Zenith Nexus Demo.
-      </p>
-      <br>
-      <p>• Profil</p>
-      <p>• Pengaturan</p>
-      <p>• Bantuan</p>
-    `;
-
-    document.getElementById("menuBtn").classList.add("active");
-
-  }
-
-}
-function investCoin(coin, price){
-
-  const amount = prompt(
-    "Masukkan jumlah investasi untuk " + coin + 
-    "\nHarga saat ini: " + price
-  );
-
-  if(amount === null || amount === ""){
-    return;
-  }
-
-  alert(
-    "Demo Investasi\n\n" +
-    "Coin: " + coin + "\n" +
-    "Jumlah: $" + amount + "\n\n" +
-    "Ini hanya simulasi, belum ada transaksi nyata."
-  );
+function notify(text){
+  const toast=document.getElementById('toast');
+  toast.textContent=text;
+  toast.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
 }
 
+function openModal(type){
+  modalType=type;
+  document.getElementById('modalTitle').textContent=type;
+  const input=document.getElementById('giftInput');
+  const text=document.getElementById('modalText');
+  const action=document.getElementById('modalAction');
 
-function demo(nama){
-
-  alert(nama + " — fitur demo berhasil diklik.");
-
+  if(type==='Kode Hadiah'){
+    input.style.display='block';
+    input.value='';
+    text.textContent='Masukkan kode untuk simulasi. Tidak ada hadiah uang nyata.';
+    action.textContent='KLAIM DEMO';
+  }else{
+    input.style.display='none';
+    text.textContent='Fitur ini hanya tersedia sebagai simulasi UI.';
+    action.textContent='OK';
+  }
+  document.getElementById('modal').classList.add('show');
 }
-
-
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function modalAction(){
+  if(modalType==='Kode Hadiah'){
+    const code=document.getElementById('giftInput').value.trim();
+    notify(code ? 'Kode "'+code+'" diproses sebagai demo.' : 'Masukkan kode terlebih dahulu.');
+    if(code) closeModal();
+  }else closeModal();
+}
+function checkIn(){notify('Check-in berhasil dicatat â€” demo UI.')}
 function spinLucky(){
-
-  alert("Lucky Spin — ini hanya demo UI, tanpa hadiah uang.");
-
+  rotation += 720;
+  document.getElementById('wheel').style.transform='rotate('+rotation+'deg)';
+  setTimeout(()=>notify('Lucky Spin selesai â€” hanya demo UI.'),1000);
 }
-
+function investCoin(coin,price){
+  const amount=prompt('Masukkan jumlah investasi untuk '+coin+'\\nHarga saat ini: '+price);
+  if(amount===null || amount.trim()==='') return;
+  const n=Number(amount);
+  if(!Number.isFinite(n) || n<=0){notify('Jumlah tidak valid.');return}
+  notify('Simulasi investasi '+coin+' sebesar $'+n.toFixed(2));
+}
+function shareReferral(){
+  const text='Zenith Nexus â€” referral demo';
+  if(navigator.share){
+    navigator.share({title:'Zenith Nexus',text:text}).catch(()=>{});
+  }else{
+    navigator.clipboard?.writeText(text);
+    notify('Referral demo disalin.');
+  }
+}
 </script>
-
 </body>
 </html>
