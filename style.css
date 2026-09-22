@@ -464,3 +464,80 @@ nav button:first-child {
     inset 0 0 20px rgba(0,0,0,.7),
     0 0 15px rgba(214,171,67,.3);
 }
+/* HOME - tampilan lebih premium */
+.bonus {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 50%, #5b4319, transparent 25%),
+    linear-gradient(110deg, #111923, #080d13 70%);
+}
+
+.bonus::after {
+  content: "✦";
+  position: absolute;
+  right: 55px;
+  top: 8px;
+  font-size: 45px;
+  color: #c99935;
+  opacity: .18;
+}
+
+.card {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 20%, #263544, transparent 40%),
+    linear-gradient(145deg, #111b25, #060b10);
+}
+
+.card:first-child::after {
+  content: "✦";
+  position: absolute;
+  right: 15px;
+  top: 8px;
+  color: #e5b74d;
+  opacity: .2;
+  font-size: 50px;
+}
+
+.card:nth-child(2)::after {
+  content: "⚡";
+  position: absolute;
+  right: 15px;
+  top: 8px;
+  color: #e5b74d;
+  opacity: .18;
+  font-size: 45px;
+}
+
+.spin {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 50%, #6a4b16, transparent 30%),
+    linear-gradient(110deg, #121c27, #070c12);
+}
+
+.spin::after {
+  content: "LUCK";
+  position: absolute;
+  right: -5px;
+  bottom: -10px;
+  font-size: 55px;
+  font-weight: bold;
+  color: #d6a83d;
+  opacity: .06;
+  pointer-events: none;
+}
+
+.stats {
+  background: linear-gradient(145deg, #101923, #060a0e);
+}
+
+.stats div {
+  transition: .2s;
+}
+
+.stats div:hover {
+  background: #111d27;
+}
