@@ -80,7 +80,8 @@
       <div>🎁<small>Deposit Bonus</small><b>$0</b></div>
       <div>♛<small>Investment Bonus</small><b>$0</b></div>
 
-    </section>
+    <section id="pageContent" class="extra-page"></section>
+
 
   </main>
 
@@ -89,7 +90,29 @@
     <button onclick="demo('Investing')">▥<small>Investing</small></button>
     <button onclick="demo('My Team')">♧<small>My Team</small></button>
     <button onclick="demo('Menu')">☰<small>Menu</small></button>
-  </nav>
+  <nav>
+  <button onclick="showPage('home')" id="homeBtn">
+    ⌂
+    <small>Home</small>
+  </button>
+
+  <button onclick="showPage('investing')" id="investBtn">
+    ▥
+    <small>Investing</small>
+  </button>
+
+  <button onclick="showPage('team')" id="teamBtn">
+    ♧
+    <small>My Team</small>
+  </button>
+
+  <button onclick="showPage('menu')" id="menuBtn">
+    ☰
+    <small>Menu</small>
+  </button>
+</nav>
+
+
 
 </div>
 
