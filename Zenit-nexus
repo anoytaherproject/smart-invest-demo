@@ -1,1 +1,887 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ZENITH NEXUS — Ultra Luxury Smart Invest Dashboard</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome 6 Pro CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#05070A',
+                        cardBg: '#0B0F17',
+                        cardHover: '#121824',
+                        goldBase: '#D4AF37',
+                        goldLight: '#FFF1B0',
+                        goldDark: '#8A6A1C',
+                        cyanGlow: '#00F2FE',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #05070A;
+            color: #F1F5F9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Ambient animated dynamic background mesh */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.22;
+            animation: floatOrb 18s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, #D4AF37 0%, #000 70%);
+        }
+
+        .orb-2 {
+            bottom: -15%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, #4F46E5 0%, #000 70%);
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            top: 40%;
+            left: 30%;
+            width: 35vw;
+            height: 35vw;
+            background: radial-gradient(circle, #00F2FE 0%, #000 70%);
+            animation-delay: -10s;
+            opacity: 0.12;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 60px) scale(1.15); }
+            100% { transform: translate(-30px, -40px) scale(0.9); }
+        }
+
+        /* Moving Liquid Metallic Gold Gradients */
+        .gold-shimmer-text {
+            background: linear-gradient(
+                90deg, 
+                #BF953F 0%, 
+                #FCF6BA 25%, 
+                #B38728 50%, 
+                #FBF5B7 75%, 
+                #AA771C 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 4s linear infinite;
+        }
+
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
+
+        /* Moving Shimmer Border */
+        .gold-shimmer-border {
+            position: relative;
+            background: #0B0F17;
+            border-radius: 1rem;
+            z-index: 1;
+        }
+
+        .gold-shimmer-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1.05rem;
+            padding: 1px;
+            background: linear-gradient(
+                115deg, 
+                rgba(212, 175, 55, 0.8), 
+                rgba(255, 241, 176, 0.2), 
+                rgba(170, 119, 28, 0.9), 
+                rgba(255, 255, 255, 0.4),
+                rgba(212, 175, 55, 0.7)
+            );
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            animation: animateBorder 6s ease infinite;
+        }
+
+        @keyframes animateBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(11, 15, 23, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-3px);
+            border-color: rgba(212, 175, 55, 0.45);
+            box-shadow: 0 12px 28px -5px rgba(212, 175, 55, 0.18);
+        }
+
+        .gold-btn-moving {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFDF00 50%, #AA771C 100%);
+            background-size: 200% 200%;
+            animation: gradientBtn 3s ease infinite;
+            color: #05070A;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .gold-btn-moving:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .gold-btn-moving:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes gradientBtn {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .wheel-spinner {
+            transition: transform 4.5s cubic-bezier(0.15, 0.99, 0.18, 0.99);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8)); }
+        }
+        .glow-pulse {
+            animation: pulseGlow 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-yellow-500 selection:text-black">
+
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div class="relative z-10 w-full max-w-lg mx-auto min-h-screen flex flex-col pb-24 border-x border-yellow-900/10 bg-obsidian/40 backdrop-blur-3xl shadow-2xl">
+
+        <!-- HEADER -->
+        <header class="sticky top-0 z-40 glass-card border-b border-yellow-500/20 px-4 py-3.5 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="relative w-11 h-11 rounded-2xl gold-shimmer-border p-0.5 flex items-center justify-center glow-pulse">
+                    <div class="w-full h-full bg-obsidian rounded-[0.9rem] flex items-center justify-center overflow-hidden">
+                        <svg class="w-7 h-7" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 14H38L18 34H38" stroke="url(#goldLogoGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 14V34" stroke="url(#goldLogoGrad)" stroke-width="4" stroke-linecap="round"/>
+                            <circle cx="38" cy="14" r="3" fill="#FFF1B0"/>
+                            <circle cx="10" cy="34" r="3" fill="#D4AF37"/>
+                            <defs>
+                                <linearGradient id="goldLogoGrad" x1="10" y1="14" x2="38" y2="34" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#FFF1B0"/>
+                                    <stop offset="50%" stop-color="#D4AF37"/>
+                                    <stop offset="100%" stop-color="#AA771C"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-base font-extrabold tracking-wider gold-shimmer-text uppercase leading-tight">ZENITH NEXUS</h1>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="text-[10px] text-gray-400 font-semibold tracking-widest uppercase">SMART INVEST • DEMO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2.5">
+                <button onclick="triggerNotification()" class="relative p-2.5 rounded-xl bg-cardBg border border-yellow-500/20 text-yellow-400 hover:bg-yellow-500/10 transition-colors">
+                    <i class="fa-solid fa-bell text-sm"></i>
+                    <span id="notifDot" class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN BODY CONTAINER -->
+        <main class="flex-grow px-4 pt-4 space-y-5">
+
+            <!-- TAB: HOME -->
+            <div id="tab-home" class="tab-page space-y-5">
+                
+                <!-- Hero Banner Card -->
+                <div class="gold-shimmer-border p-5 overflow-hidden relative">
+                    <div class="relative z-10 flex flex-col justify-between space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-[10px] font-bold tracking-wider uppercase inline-flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-crown text-[10px]"></i>
+                                    <span>ZN • SMART INVEST</span>
+                                </span>
+                                <h2 class="text-xl sm:text-2xl font-black text-white tracking-wide mt-2 leading-snug">
+                                    INVEST TODAY<br><span class="gold-shimmer-text">BUILD TOMORROW</span>
+                                </h2>
+                            </div>
+                            
+                            <!-- Live Financial Canvas Chart -->
+                            <div class="w-24 h-16 relative flex items-center justify-center">
+                                <canvas id="heroChartCanvas" class="w-full h-full"></canvas>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-400 max-w-xs leading-relaxed">
+                            Dashboard simulasi investasi untuk latihan antarmuka web dengan kalkulasi realtime.
+                        </p>
+
+                        <div class="pt-2 border-t border-yellow-500/15 flex items-center justify-between">
+                            <span class="text-[11px] text-gray-400 font-medium">Portofolio Realtime:</span>
+                            <span id="heroTotalPortfolio" class="text-lg font-mono font-extrabold gold-shimmer-text">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center space-x-2">
+                        <i class="fa-solid fa-bolt text-yellow-400"></i>
+                        <span>Quick Actions</span>
+                    </h3>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div onclick="openModal('giftModal')" class="glass-card glass-card-hover p-4 rounded-2xl cursor-pointer group flex flex-col justify-between space-y-3 relative overflow-hidden">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-gift text-lg"></i>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-gray-600 group-hover:text-yellow-400 group-hover:translate-x-1 transition-all"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white tracking-wide uppercase">KODE HADIAH</h4>
+                                <p class="text-[10px] text-gray-400 mt-0.5">Masukkan kode bonus demo.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="claimDailyCheckin()" class="glass-card glass-card-hover p-4 rounded-2xl cursor-pointer group flex flex-col justify-between space-y-3 relative overflow-hidden">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-stopwatch text-lg"></i>
+                                </div>
+                                <span id="checkinBadge" class="text-[9px] font-extrabold text-yellow-400 bg-yellow-500/15 border border-yellow-500/30 px-2 py-0.5 rounded-full">+$50</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white tracking-wide uppercase">CHECK-IN</h4>
+                                <p class="text-[10px] text-gray-400 mt-0.5">Simulasi check-in harian.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="openModal('spinModal')" class="col-span-2 glass-card glass-card-hover p-4 rounded-2xl cursor-pointer group flex items-center justify-between relative overflow-hidden">
+                            <div class="flex items-center space-x-3.5">
+                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-yellow-600 to-yellow-300 p-0.5 shadow-lg shadow-yellow-500/20 group-hover:rotate-12 transition-transform">
+                                    <div class="w-full h-full bg-obsidian rounded-[0.85rem] flex items-center justify-center">
+                                        <i class="fa-solid fa-dharmachakra text-xl text-yellow-400"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-white tracking-wide uppercase">LUCKY SPIN</h4>
+                                    <p class="text-[10px] text-gray-400">Demo interaksi UI — tanpa hadiah uang.</p>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-500 group-hover:text-black transition-all">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center space-x-2">
+                            <i class="fa-solid fa-chart-pie text-yellow-400"></i>
+                            <span>Statistik Akun Demo</span>
+                        </h3>
+                        <button onclick="resetData()" class="text-[10px] text-gray-500 hover:text-yellow-400 underline">Reset Data</button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Deposit</span>
+                                <span class="text-xs font-mono font-bold text-cyan-300" id="statDeposit">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Investment</span>
+                                <span class="text-xs font-mono font-bold text-cyan-300" id="statInvestment">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3 relative overflow-hidden">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs shrink-0">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Profit</span>
+                                <span class="text-xs font-mono font-bold text-emerald-400" id="statProfit">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Withdraw</span>
+                                <span class="text-xs font-mono font-bold text-cyan-300" id="statWithdraw">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-user-group"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Reference</span>
+                                <span class="text-xs font-mono font-bold text-white" id="statRef">0</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Team Wins</span>
+                                <span class="text-xs font-mono font-bold text-cyan-300" id="statTeamWins">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-coins"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Deposit Bonus</span>
+                                <span class="text-xs font-mono font-bold text-cyan-300" id="statDepBonus">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Investment Bonus</span>
+                                <span class="text-xs font-mono font-bold text-cyan-300" id="statInvBonus">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: INVESTING -->
+            <div id="tab-investing" class="tab-page space-y-4 hidden">
+                <div class="glass-card p-4 rounded-2xl border border-yellow-500/20 space-y-3">
+                    <h3 class="text-sm font-bold text-white">Paket Investasi Demo</h3>
+                    <p class="text-xs text-gray-400">Pilih paket untuk mengaktifkan pertumbuhan saldo harian.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="glass-card p-4 rounded-2xl border border-yellow-500/20 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LOW RISK</span>
+                            <span class="text-xs text-gray-400">Durasi: 30 Hari</span>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-white">BRONZE VAULT</h4>
+                                <div class="text-xl font-mono font-bold text-yellow-400 mt-0.5">1.5% <span class="text-xs text-gray-400 font-normal">/ hari</span></div>
+                            </div>
+                            <button onclick="investPackage('BRONZE VAULT', 50, 1.5)" class="gold-btn-moving px-4 py-2 rounded-xl text-xs font-bold">Invest $50</button>
+                        </div>
+                    </div>
+
+                    <div class="gold-shimmer-border p-4 space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-yellow-300 bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30">MOST POPULAR</span>
+                            <span class="text-xs text-gray-400">Durasi: 60 Hari</span>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-white">GOLD NEXUS</h4>
+                                <div class="text-xl font-mono font-bold text-yellow-400 mt-0.5">3.2% <span class="text-xs text-gray-400 font-normal">/ hari</span></div>
+                            </div>
+                            <button onclick="investPackage('GOLD NEXUS', 200, 3.2)" class="gold-btn-moving px-4 py-2 rounded-xl text-xs font-bold">Invest $200</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: MY TEAM -->
+            <div id="tab-team" class="tab-page space-y-4 hidden">
+                <div class="glass-card p-5 rounded-2xl border border-yellow-500/20 space-y-4">
+                    <h3 class="text-sm font-bold text-white">Tim & Referral jaringan</h3>
+                    <div class="bg-obsidian/80 p-3.5 rounded-xl border border-yellow-500/20 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold">Kode Referral</span>
+                            <div class="text-sm font-mono font-bold text-yellow-400">ZN-889921</div>
+                        </div>
+                        <button onclick="copyRef()" class="gold-btn-moving px-3 py-1.5 rounded-lg text-xs font-bold">Salin Link</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: MENU -->
+            <div id="tab-menu" class="tab-page space-y-4 hidden">
+                <div class="glass-card p-5 rounded-2xl border border-yellow-500/20 space-y-4">
+                    <div class="flex items-center space-x-3.5 border-b border-gray-800 pb-4">
+                        <div class="w-12 h-12 rounded-xl gold-shimmer-border p-0.5">
+                            <div class="w-full h-full bg-obsidian rounded-[0.7rem] flex items-center justify-center text-yellow-400">
+                                <i class="fa-solid fa-user-gear text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Demo User Account</h4>
+                            <span class="text-xs font-mono text-yellow-400">VIP MEMBER • ACTIVE</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <button onclick="openModal('depositModal')" class="w-full p-3 rounded-xl bg-cardBg hover:bg-cardHover border border-gray-800 flex items-center justify-between text-xs font-semibold text-white">
+                            <span class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-circle-plus text-emerald-400"></i>
+                                <span>Simulasi Top Up Deposit</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                        </button>
+
+                        <button onclick="openModal('withdrawModal')" class="w-full p-3 rounded-xl bg-cardBg hover:bg-cardHover border border-gray-800 flex items-center justify-between text-xs font-semibold text-white">
+                            <span class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-circle-arrow-up text-yellow-400"></i>
+                                <span>Simulasi Penarikan Profit</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- MODAL: KODE HADIAH -->
+        <div id="giftModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+            <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-4">
+                <button onclick="closeModal('giftModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                <div class="text-center space-y-1">
+                    <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center mx-auto text-yellow-400">
+                        <i class="fa-solid fa-gift text-lg"></i>
+                    </div>
+                    <h4 class="text-sm font-bold text-white pt-1">Klaim Kode Hadiah</h4>
+                    <p class="text-[11px] text-gray-400">Gunakan kode <strong class="text-yellow-400">ZENITH2026</strong> untuk bonus demo $500.</p>
+                </div>
+                <div class="space-y-2.5">
+                    <input type="text" id="giftInput" placeholder="ZENITH2026" class="w-full px-3.5 py-2.5 bg-obsidian border border-yellow-500/30 rounded-xl text-xs font-mono tracking-widest uppercase text-yellow-300 focus:outline-none focus:border-yellow-400 text-center">
+                    <button onclick="submitGift()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold uppercase">Klaim Bonus</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: LUCKY SPIN -->
+        <div id="spinModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+            <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-4 text-center">
+                <button onclick="closeModal('spinModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                
+                <div>
+                    <h4 class="text-sm font-bold text-white">Lucky Spin Nexus</h4>
+                    <p class="text-[11px] text-gray-400">Putar roda dan klaim bonus demo.</p>
+                </div>
+
+                <div class="relative w-48 h-48 mx-auto flex items-center justify-center py-2">
+                    <div class="absolute -top-1 z-20 text-yellow-400 text-xl">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <div id="spinWheel" class="wheel-spinner w-full h-full rounded-full border-4 border-yellow-500/60 shadow-lg shadow-yellow-500/20 bg-gradient-to-tr from-yellow-900/40 via-obsidian to-yellow-600/30 flex items-center justify-center overflow-hidden">
+                        <div class="text-center space-y-1">
+                            <i class="fa-solid fa-crown text-2xl gold-shimmer-text"></i>
+                            <div class="text-[10px] font-bold text-yellow-300 uppercase tracking-wider">SPIN & WIN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="spinBtn" onclick="runSpin()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold uppercase">Putar Roda</button>
+            </div>
+        </div>
+
+        <!-- MODAL: DEPOSIT -->
+        <div id="depositModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+            <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-3">
+                <button onclick="closeModal('depositModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                <h4 class="text-sm font-bold text-white">Top Up Deposit Demo</h4>
+                <input type="number" id="depAmt" value="100" class="w-full px-3.5 py-2.5 bg-obsidian border border-gray-700 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-yellow-400">
+                <button onclick="submitDeposit()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold">Konfirmasi Deposit</button>
+            </div>
+        </div>
+
+        <!-- MODAL: WITHDRAW -->
+        <div id="withdrawModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+            <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-3">
+                <button onclick="closeModal('withdrawModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+                <h4 class="text-sm font-bold text-white">Penarikan Profit Demo</h4>
+                <input type="number" id="wdAmt" value="50" class="w-full px-3.5 py-2.5 bg-obsidian border border-gray-700 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-yellow-400">
+                <button onclick="submitWithdraw()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold">Proses Penarikan</button>
+            </div>
+        </div>
+
+        <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-xs w-full px-4 py-3 rounded-xl glass-card border border-yellow-500/30 transition-all duration-300 transform -translate-y-12 opacity-0 flex items-center space-x-3 pointer-events-none">
+            <div id="toastIcon"></div>
+            <div id="toastMsg" class="text-xs font-medium text-white"></div>
+        </div>
+
+        <!-- BOTTOM NAVIGATION BAR -->
+        <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-lg mx-auto glass-card border-t border-yellow-500/20 px-6 py-2.5 flex items-center justify-around">
+            <button onclick="switchTab('home')" id="nav-home" class="nav-item flex flex-col items-center space-y-1 text-yellow-400">
+                <i class="fa-solid fa-house text-base"></i>
+                <span class="text-[10px] font-bold tracking-wider">Home</span>
+            </button>
+            <button onclick="switchTab('investing')" id="nav-investing" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
+                <i class="fa-solid fa-chart-simple text-base"></i>
+                <span class="text-[10px] font-bold tracking-wider">Investing</span>
+            </button>
+            <button onclick="switchTab('team')" id="nav-team" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
+                <i class="fa-solid fa-users text-base"></i>
+                <span class="text-[10px] font-bold tracking-wider">My Team</span>
+            </button>
+            <button onclick="switchTab('menu')" id="nav-menu" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
+                <i class="fa-solid fa-bars text-base"></i>
+                <span class="text-[10px] font-bold tracking-wider">Menu</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <script>
+        let state = {
+            deposit: 1000,
+            investment: 200,
+            profit: 45.50,
+            withdraw: 0,
+            reference: 3,
+            teamWins: 150,
+            depBonus: 50,
+            invBonus: 20,
+            hasCheckedInToday: false,
+            usedCodes: []
+        };
+
+        window.onload = function() {
+            loadState();
+            updateStatsUI();
+            initHeroCanvasChart();
+
+            setInterval(() => {
+                if (state.investment > 0) {
+                    state.profit += 0.05;
+                    updateStatsUI();
+                    saveState();
+                }
+            }, 3000);
+        };
+
+        function formatUSD(val) {
+            return '$' + Number(val).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function updateStatsUI() {
+            document.getElementById('statDeposit').innerText = formatUSD(state.deposit);
+            document.getElementById('statInvestment').innerText = formatUSD(state.investment);
+            document.getElementById('statProfit').innerText = formatUSD(state.profit);
+            document.getElementById('statWithdraw').innerText = formatUSD(state.withdraw);
+            document.getElementById('statRef').innerText = state.reference;
+            document.getElementById('statTeamWins').innerText = formatUSD(state.teamWins);
+            document.getElementById('statDepBonus').innerText = formatUSD(state.depBonus);
+            document.getElementById('statInvBonus').innerText = formatUSD(state.invBonus);
+
+            const total = state.deposit + state.investment + state.profit;
+            document.getElementById('heroTotalPortfolio').innerText = formatUSD(total);
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-page').forEach(page => page.classList.add('hidden'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('text-yellow-400');
+                btn.classList.add('text-gray-500');
+            });
+
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-500');
+                activeBtn.classList.add('text-yellow-400');
+            }
+        }
+
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toastIcon');
+            const message = document.getElementById('toastMsg');
+
+            message.innerText = msg;
+            if (type === 'success') {
+                icon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>';
+            } else if (type === 'error') {
+                icon.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-400 text-base"></i>';
+            } else {
+                icon.innerHTML = '<i class="fa-solid fa-circle-info text-cyan-400 text-base"></i>';
+            }
+
+            toast.classList.remove('-translate-y-12', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-12', 'opacity-0');
+            }, 3000);
+        }
+
+        function claimDailyCheckin() {
+            if (state.hasCheckedInToday) {
+                showToast('Sudah check-in hari ini!', 'info');
+                return;
+            }
+            state.hasCheckedInToday = true;
+            state.deposit += 50;
+            state.depBonus += 50;
+            document.getElementById('checkinBadge').innerText = 'CLAIMED';
+            updateStatsUI();
+            saveState();
+            showToast('Check-in Berhasil! +$50 ditambahkan.');
+        }
+
+        function submitGift() {
+            const code = document.getElementById('giftInput').value.trim().toUpperCase();
+            if (code === 'ZENITH2026') {
+                if (state.usedCodes.includes(code)) {
+                    showToast('Kode ini sudah dipakai!', 'error');
+                    return;
+                }
+                state.usedCodes.push(code);
+                state.deposit += 500;
+                state.depBonus += 500;
+                updateStatsUI();
+                saveState();
+                closeModal('giftModal');
+                showToast('Selamat! Bonus +$500 diklaim!');
+            } else {
+                showToast('Kode tidak valid!', 'error');
+            }
+        }
+
+        let isSpinning = false;
+        function runSpin() {
+            if (isSpinning) return;
+            isSpinning = true;
+            const wheel = document.getElementById('spinWheel');
+            const deg = 1080 + Math.floor(Math.random() * 360);
+            
+            wheel.style.transform = `rotate(${deg}deg)`;
+
+            setTimeout(() => {
+                const prize = 100;
+                state.deposit += prize;
+                state.depBonus += prize;
+                updateStatsUI();
+                saveState();
+                isSpinning = false;
+                closeModal('spinModal');
+                showToast(`Lucky Spin Berhasil! Menang +$${prize}!`);
+            }, 4500);
+        }
+
+        function investPackage(name, min, rate) {
+            if (state.deposit < min) {
+                showToast(`Saldo deposit kurang (Min: $${min})`, 'error');
+                return;
+            }
+            state.deposit -= min;
+            state.investment += min;
+            updateStatsUI();
+            saveState();
+            showToast(`Investasi ${name} sebesar $${min} Aktif!`);
+        }
+
+        function submitDeposit() {
+            const amt = parseFloat(document.getElementById('depAmt').value);
+            if (amt > 0) {
+                state.deposit += amt;
+                updateStatsUI();
+                saveState();
+                closeModal('depositModal');
+                showToast(`Top Up $${amt} Berhasil!`);
+            }
+        }
+
+        function submitWithdraw() {
+            const amt = parseFloat(document.getElementById('wdAmt').value);
+            if (amt > 0 && state.profit >= amt) {
+                state.profit -= amt;
+                state.withdraw += amt;
+                updateStatsUI();
+                saveState();
+                closeModal('withdrawModal');
+                showToast(`Penarikan $${amt} Diproses!`);
+            } else {
+                showToast('Profit tidak cukup!', 'error');
+            }
+        }
+
+        function copyRef() {
+            showToast('Link referral disalin!');
+        }
+
+        function triggerNotification() {
+            document.getElementById('notifDot').classList.add('hidden');
+            showToast('Semua notifikasi sudah dibaca.', 'info');
+        }
+
+        function resetData() {
+            localStorage.removeItem('zenith_ultra_state');
+            location.reload();
+        }
+
+        function saveState() {
+            localStorage.setItem('zenith_ultra_state', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const saved = localStorage.getItem('zenith_ultra_state');
+            if (saved) {
+                try { state = { ...state, ...JSON.parse(saved) }; } catch(e){}
+            }
+        }
+
+        function initHeroCanvasChart() {
+            const canvas = document.getElementById('heroChartCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            let width = canvas.width = canvas.offsetWidth;
+            let height = canvas.height = canvas.offsetHeight;
+
+            let points = [
+                {x: 0, y: height * 0.8},
+                {x: width * 0.25, y: height * 0.65},
+                {x: width * 0.5, y: height * 0.75},
+                {x: width * 0.75, y: height * 0.35},
+                {x: width, y: height * 0.15}
+            ];
+
+            function animateChart() {
+                ctx.clearRect(0, 0, width, height);
+
+                let gradient = ctx.createLinearGradient(0, 0, width, 0);
+                gradient.addColorStop(0, '#D4AF37');
+                gradient.addColorStop(0.5, '#FFF1B0');
+                gradient.addColorStop(1, '#00F2FE');
+
+                ctx.beginPath();
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = gradient;
+
+                for (let i = 0; i < points.length - 1; i++) {
+                    ctx.moveTo(points[i].x, points[i].y);
+                    ctx.lineTo(points[i+1].x, points[i+1].y);
+                }
+                ctx.stroke();
+
+                let lastPoint = points[points.length - 1];
+                ctx.beginPath();
+                ctx.arc(lastPoint.x - 2, lastPoint.y + 2, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#00F2FE';
+                ctx.shadowColor = '#00F2FE';
+                ctx.shadowBlur = 10;
+                ctx.fill();
+
+                requestAnimationFrame(animateChart);
+            }
+
+            animateChart();
+        }
+    </script>
+</body>
+</html>
