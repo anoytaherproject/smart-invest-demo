@@ -597,4 +597,32 @@ nav button:first-child {
 .hero .chart {
   z-index: 2;
 }
+/* ANIMASI BANNER */
+.hero::before {
+  animation: globeGlow 4s ease-in-out infinite;
+}
+
+.hero::after {
+  animation: chartMove 3s ease-in-out infinite;
+}
+
+@keyframes globeGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: .5;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes chartMove {
+  0%, 100% {
+    transform: rotate(-22deg) translateX(0);
+  }
+  50% {
+    transform: rotate(-22deg) translateX(-12px);
+  }
+}
 
