@@ -75,16 +75,46 @@ function showPage(page) {
   }
 
   if (page === "team") {
-    content.innerHTML = `
-      <div class="extra-card">
-        <h2>👥 MY TEAM</h2>
-        <p>Halaman tim versi demo.</p>
+  content.innerHTML = `
+    <div class="extra-card team-page">
 
-        <div class="demo-box">
-          <b>MY TEAM</b>
-          <span>0 Members</span>
+      <h2>👥 MY TEAM</h2>
+      <p class="sub">Dashboard tim versi demo</p>
+
+      <div class="team-summary">
+        <div>
+          <b>0</b>
+          <small>Members</small>
+        </div>
+
+        <div>
+          <b>$0</b>
+          <small>Team Wins</small>
+        </div>
+
+        <div>
+          <b>$0</b>
+          <small>Bonus</small>
         </div>
       </div>
+
+      <div class="demo-box">
+        <b>👤 MEMBER LIST</b>
+        <span>Belum ada anggota pada demo.</span>
+      </div>
+
+      <button class="demo-button" onclick="demo('Referral')">
+        BAGIKAN REFERRAL
+      </button>
+
+    </div>
+  `;
+
+  content.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
     `;
 
     content.scrollIntoView({
