@@ -625,4 +625,63 @@ nav button:first-child {
     transform: rotate(-22deg) translateX(-12px);
   }
 }
+/* ANIMASI CARD */
+.card {
+  transition: .3s ease;
+}
+
+.card:active {
+  transform: scale(.96);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* LUCKY SPIN */
+.spin {
+  transition: .3s ease;
+  cursor: pointer;
+}
+
+.spin:active {
+  transform: scale(.96);
+}
+
+.wheel {
+  transition: transform 1s cubic-bezier(.17,.67,.25,1.25);
+}
+
+/* EFEK CAHAYA */
+.bonus {
+  position: relative;
+  overflow: hidden;
+}
+
+.bonus::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.18),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+
+  45%, 100% {
+    left: 140%;
+  }
+}
 
