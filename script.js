@@ -25,7 +25,6 @@ function showPage(page) {
     content.innerHTML = "";
     window.scrollTo({ top: 0, behavior: "smooth" });
   
-  if (page === "investing") {
   content.innerHTML = `
     <div class="extra-card investing-page">
 
