@@ -358,3 +358,47 @@ nav button:first-child {
   color: #aaa;
 }
 
+.investing-page .sub {
+  color: #aaa;
+  font-size: 11px;
+}
+
+.plan {
+  margin-top: 12px;
+  padding: 15px;
+  border: 1px solid #60491e;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg,#18232d,#080d12);
+}
+
+.plan b {
+  display: block;
+  color: #e9bd52;
+  font-size: 13px;
+}
+
+.plan small {
+  display: block;
+  margin-top: 5px;
+  color: #aaa;
+  font-size: 9px;
+}
+
+.plan strong {
+  color: #32c3e4;
+  font-size: 12px;
+}
+
+.demo-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 13px;
+  border: 1px solid #d3a83f;
+  border-radius: 9px;
+  background: #c89c35;
+  color: #080808;
+  font-weight: bold;
+}
