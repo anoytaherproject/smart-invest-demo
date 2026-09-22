@@ -262,6 +262,72 @@ main{
   font-size:20px;
 }
 
+.coin{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  margin-bottom:12px;
+  background:#0d151d;
+  border:1px solid #293744;
+  border-radius:18px;
+}
+
+.coin-icon{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#17232e;
+  color:#e5b93f;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.coin-info{
+  flex:1;
+}
+
+.coin-info b{
+  display:block;
+  font-size:16px;
+}
+
+.coin-info small{
+  color:#777;
+}
+
+.coin-price{
+  text-align:right;
+}
+
+.coin-price b{
+  display:block;
+  font-size:15px;
+}
+
+.coin-price small{
+  font-size:12px;
+}
+
+.up{
+  color:#22c77a;
+}
+
+.down{
+  color:#ff5c5c;
+}
+
+.coin button{
+  border:1px solid #e5b93f;
+  background:#e5b93f;
+  color:#111;
+  border-radius:10px;
+  padding:9px 12px;
+  font-weight:bold;
+}
 /* PAGE */
 .extra-page{
   display:none;
@@ -555,42 +621,87 @@ function showPage(page){
 
   else if(page === "investing"){
 
-    home.style.display = "none";
-    content.style.display = "block";
+  home.style.display = "none";
+  content.style.display = "block";
 
-    content.innerHTML = `
-      <h2>INVESTING</h2>
-      <p>
-        Halaman Investing berhasil dibuka.
-      </p>
-      <br>
-      <p>
-        Ini masih berupa demo UI. 
-        Belum ada transaksi atau uang sungguhan.
-      </p>
-    `;
+  content.innerHTML = `
+    <h2>CRYPTO MARKET</h2>
 
-    document.getElementById("investBtn").classList.add("active");
+    <p style="color:#aaa;margin-bottom:20px;">
+      Market Crypto — Demo
+    </p>
 
-  }
+    <div class="coin">
+      <div class="coin-icon">₿</div>
+      <div class="coin-info">
+        <b>Bitcoin</b>
+        <small>BTC</small>
+      </div>
+      <div class="coin-price">
+        <b>$67,250</b>
+        <small class="up">+2.41%</small>
+      </div>
+      <button onclick="investCoin('Bitcoin','$67,250')">
+  Invest
+</button>
 
-  else if(page === "team"){
+    </div>
 
-    home.style.display = "none";
-    content.style.display = "block";
+    <div class="coin">
+      <div class="coin-icon">Ξ</div>
+      <div class="coin-info">
+        <b>Ethereum</b>
+        <small>ETH</small>
+      </div>
+      <div class="coin-price">
+        <b>$2,590</b>
+        <small class="up">+1.85%</small>
+      </div>
+      <button onclick="investCoin('Ethereum','$2,590')">
+  Invest
+</button>
+    </div>
 
-    content.innerHTML = `
-      <h2>MY TEAM</h2>
-      <p>
-        Halaman My Team berhasil dibuka.
-      </p>
-      <br>
-      <p>
-        Total Reference: 0
-      </p>
-    `;
+    <div class="coin">
+      <div class="coin-icon">◎</div>
+      <div class="coin-info">
+        <b>Solana</b>
+        <small>SOL</small>
+      </div>
+      <div class="coin-price">
+        <b>$148.20</b>
+        <small class="up">+3.72%</small>
+      </div>
+      <button onclick="investCoin('Solana','$148.20')">
+  Invest
+</button>
 
-    document.getElementById("teamBtn").classList.add("active");
+    </div>
+
+    <div class="coin">
+      <div class="coin-icon">X</div>
+      <div class="coin-info">
+        <b>XRP</b>
+        <small>XRP</small>
+      </div>
+      <div class="coin-price">
+        <b>$0.51</b>
+        <small class="down">-0.63%</small>
+      </div>
+      <button onclick="investCoin('XRP','$0.51')">
+  Invest
+</button>
+
+    </div>
+
+    <p style="margin-top:20px;color:#777;font-size:13px;">
+      ⚠️ Data di atas hanya contoh untuk tampilan website.
+    </p>
+  `;
+
+  document.getElementById("investBtn").classList.add("active");
+
+}
 
   }
 
@@ -614,6 +725,24 @@ function showPage(page){
 
   }
 
+}
+function investCoin(coin, price){
+
+  const amount = prompt(
+    "Masukkan jumlah investasi untuk " + coin + 
+    "\nHarga saat ini: " + price
+  );
+
+  if(amount === null || amount === ""){
+    return;
+  }
+
+  alert(
+    "Demo Investasi\n\n" +
+    "Coin: " + coin + "\n" +
+    "Jumlah: $" + amount + "\n\n" +
+    "Ini hanya simulasi, belum ada transaksi nyata."
+  );
 }
 
 
