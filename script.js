@@ -25,173 +25,204 @@ function showPage(page) {
     return;
   }
 
+  // HOME
   if (page === "home") {
     content.innerHTML = "";
+
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
+
+    return;
   }
 
+  // INVESTING
   if (page === "investing") {
-  content.innerHTML = `
-    <div class="extra-card investing-page">
+    content.innerHTML = `
+      <div class="extra-card investing-page">
 
-      <h2>📊 INVESTING</h2>
-      <p class="sub">
-        Pilihan paket investasi — DEMO UI
-      </p>
+        <h2>📊 INVESTING</h2>
 
-      <div class="plan">
-        <div>
-          <b>STARTER</b>
-          <small>Paket demo pemula</small>
-        </div>
-        <strong>DEMO</strong>
-      </div>
+        <p class="sub">
+          Pilihan paket investasi — DEMO UI
+        </p>
 
-      <div class="plan">
-        <div>
-          <b>STANDARD</b>
-          <small>Paket demo standar</small>
-        </div>
-        <strong>DEMO</strong>
-      </div>
-
-      <div class="plan">
-        <div>
-          <b>PREMIUM</b>
-          <small>Paket demo premium</small>
-        </div>
-        <strong>DEMO</strong>
-      </div>
-
-      <div class="demo-box">
-        <b>ℹ️ DEMO MODE</b>
-        <span>
-          Ini hanya tampilan simulasi. Tidak ada
-          deposit, penarikan, atau transaksi uang nyata.
-        </span>
-      </div>
-
-      <button class="demo-button"
-        onclick="demo('Detail Paket')">
-        LIHAT DETAIL
-      </button>
-
-    </div>
-  `;
-
-  content.scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
-    });
-  }
-
-  if (page === "team") {
-  content.innerHTML = `
-    <div class="extra-card team-page">
-
-      <h2>👥 MY TEAM</h2>
-      <p class="sub">Dashboard tim versi demo</p>
-
-      <div class="team-summary">
-        <div>
-          <b>0</b>
-          <small>Members</small>
+        <div class="plan">
+          <div>
+            <b>STARTER</b>
+            <small>Paket demo pemula</small>
+          </div>
+          <strong>DEMO</strong>
         </div>
 
-        <div>
-          <b>$0</b>
-          <small>Team Wins</small>
+        <div class="plan">
+          <div>
+            <b>STANDARD</b>
+            <small>Paket demo standar</small>
+          </div>
+          <strong>DEMO</strong>
         </div>
 
-        <div>
-          <b>$0</b>
-          <small>Bonus</small>
+        <div class="plan">
+          <div>
+            <b>PREMIUM</b>
+            <small>Paket demo premium</small>
+          </div>
+          <strong>DEMO</strong>
         </div>
+
+        <div class="demo-box">
+          <b>ℹ️ DEMO MODE</b>
+          <span>
+            Ini hanya tampilan simulasi. Tidak ada
+            deposit, penarikan, atau transaksi uang nyata.
+          </span>
+        </div>
+
+        <button
+          class="demo-button"
+          onclick="demo('Detail Paket')">
+          LIHAT DETAIL
+        </button>
+
       </div>
-
-      <div class="demo-box">
-        <b>👤 MEMBER LIST</b>
-        <span>Belum ada anggota pada demo.</span>
-      </div>
-
-      <button class="demo-button" onclick="demo('Referral')">
-        BAGIKAN REFERRAL
-      </button>
-
-    </div>
-  `;
-
-  content.scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
     `;
 
     content.scrollIntoView({
       behavior: "smooth"
     });
+
+    return;
   }
 
-  if (page === "menu") {
-  content.innerHTML = `
-    <div class="extra-card menu-page">
+  // MY TEAM
+  if (page === "team") {
+    content.innerHTML = `
+      <div class="extra-card team-page">
 
-      <h2>☰ MENU</h2>
-      <p class="sub">Pengaturan aplikasi versi demo</p>
+        <h2>👥 MY TEAM</h2>
 
-      <div class="menu-item" onclick="demo('Profile')">
-        👤
-        <div>
-          <b>Profile</b>
-          <small>Informasi akun demo</small>
+        <p class="sub">
+          Dashboard tim versi demo
+        </p>
+
+        <div class="team-summary">
+
+          <div>
+            <b>0</b>
+            <small>Members</small>
+          </div>
+
+          <div>
+            <b>$0</b>
+            <small>Team Wins</small>
+          </div>
+
+          <div>
+            <b>$0</b>
+            <small>Bonus</small>
+          </div>
+
         </div>
-        <strong>›</strong>
-      </div>
 
-      <div class="menu-item" onclick="demo('Notifications')">
-        🔔
-        <div>
-          <b>Notifications</b>
-          <small>Pengaturan pemberitahuan</small>
+        <div class="demo-box">
+          <b>👤 MEMBER LIST</b>
+          <span>
+            Belum ada anggota pada demo.
+          </span>
         </div>
-        <strong>›</strong>
+
+        <button
+          class="demo-button"
+          onclick="demo('Referral')">
+          BAGIKAN REFERRAL
+        </button>
+
       </div>
-
-      <div class="menu-item" onclick="demo('Security')">
-        🔐
-        <div>
-          <b>Security</b>
-          <small>Pengaturan keamanan</small>
-        </div>
-        <strong>›</strong>
-      </div>
-
-      <div class="menu-item" onclick="demo('About')">
-        ℹ️
-        <div>
-          <b>About</b>
-          <small>Informasi aplikasi demo</small>
-        </div>
-        <strong>›</strong>
-      </div>
-
-    </div>
-  `;
-
-  content.scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
+    `;
 
     content.scrollIntoView({
       behavior: "smooth"
     });
+
+    return;
+  }
+
+  // MENU
+  if (page === "menu") {
+    content.innerHTML = `
+      <div class="extra-card menu-page">
+
+        <h2>☰ MENU</h2>
+
+        <p class="sub">
+          Pengaturan aplikasi versi demo
+        </p>
+
+        <div
+          class="menu-item"
+          onclick="demo('Profile')">
+
+          👤
+
+          <div>
+            <b>Profile</b>
+            <small>Informasi akun demo</small>
+          </div>
+
+          <strong>›</strong>
+        </div>
+
+        <div
+          class="menu-item"
+          onclick="demo('Notifications')">
+
+          🔔
+
+          <div>
+            <b>Notifications</b>
+            <small>Pengaturan pemberitahuan</small>
+          </div>
+
+          <strong>›</strong>
+        </div>
+
+        <div
+          class="menu-item"
+          onclick="demo('Security')">
+
+          🔐
+
+          <div>
+            <b>Security</b>
+            <small>Pengaturan keamanan</small>
+          </div>
+
+          <strong>›</strong>
+        </div>
+
+        <div
+          class="menu-item"
+          onclick="demo('About')">
+
+          ℹ️
+
+          <div>
+            <b>About</b>
+            <small>Informasi aplikasi demo</small>
+          </div>
+
+          <strong>›</strong>
+        </div>
+
+      </div>
+    `;
+
+    content.scrollIntoView({
+      behavior: "smooth"
+    });
+
+    return;
   }
 }
