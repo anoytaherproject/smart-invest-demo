@@ -318,4 +318,43 @@ nav button:first-child {
 .card:active {
   transform: scale(0.97);
 }
+.extra-page {
+  margin: 14px;
+}
+
+.extra-card {
+  padding: 18px;
+  border: 1px solid #735521;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #121b24, #070d13);
+}
+
+.extra-card h2 {
+  color: #e9bd52;
+  margin-top: 0;
+}
+
+.extra-card p {
+  color: #bbb;
+  font-size: 12px;
+}
+
+.demo-box {
+  margin-top: 10px;
+  padding: 14px;
+  border: 1px solid #4d3b1b;
+  border-radius: 10px;
+  color: #ddd;
+}
+
+.demo-box b {
+  display: block;
+  color: #e9bd52;
+  margin-bottom: 5px;
+}
+
+.demo-box span {
+  font-size: 11px;
+  color: #aaa;
+}
 
