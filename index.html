@@ -597,7 +597,37 @@ nav button.active{
 </div>
 
 
-<script>
+<<script>
+
+function investCoin(coin, price){
+
+  const harga = Number(
+    price.replace("$","").replace(",","")
+  );
+
+  const modal = 100;
+
+  const jumlah = modal / harga;
+
+  alert(
+    "INVESTASI DEMO\n\n" +
+    "Coin: " + coin + "\n" +
+    "Harga: " + price + "\n" +
+    "Modal simulasi: $100\n" +
+    "Jumlah coin: " + jumlah.toFixed(6) + "\n\n" +
+    "⚠️ Hanya simulasi UI."
+  );
+}
+
+function showPage(page){
+
+  );
+}
+
+function showPage(page){
+
+  const home = document.getElementById("homePage");
+
 
 function showPage(page){
 
