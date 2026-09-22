@@ -24,8 +24,7 @@ function showPage(page) {
   if (page === "home") {
     content.innerHTML = "";
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
+  
   if (page === "investing") {
   content.innerHTML = `
     <div class="extra-card investing-page">
@@ -62,7 +61,7 @@ function showPage(page) {
       </button>
 
     </div>
-  `;
+  
 
   content.scrollIntoView({behavior:"smooth"});
 }
