@@ -2,6 +2,22 @@ function demo(nama) {
   alert(nama + " — fitur demo berhasil diklik!");
 }
 
+let putaran = 0;
+
+function spinLucky() {
+  putaran += 720;
+
+  const wheel = document.querySelector(".wheel");
+
+  if (wheel) {
+    wheel.style.transform = `rotate(${putaran}deg)`;
+  }
+
+  setTimeout(() => {
+    alert("Lucky Spin selesai — ini hanya demo UI.");
+  }, 1000);
+}
+
 function showPage(page) {
   const content = document.getElementById("pageContent");
 
@@ -21,39 +37,32 @@ function showPage(page) {
         </div>
       </div>
     `;
-    content.scrollIntoView({ behavior: "smooth" });
+    content.scrollIntoView({behavior:"smooth"});
   }
 
   if (page === "team") {
     content.innerHTML = `
       <div class="extra-card">
         <h2>👥 MY TEAM</h2>
-        <p>Daftar tim versi demo.</p>
+        <p>Halaman tim versi demo.</p>
         <div class="demo-box">
           <b>MY TEAM</b>
           <span>0 Members</span>
         </div>
       </div>
     `;
-    content.scrollIntoView({ behavior: "smooth" });
+    content.scrollIntoView({behavior:"smooth"});
   }
 
   if (page === "menu") {
     content.innerHTML = `
       <div class="extra-card">
         <h2>☰ MENU</h2>
-        <p>Menu aplikasi demo.</p>
-        <div class="demo-box">
-          ⚙️ Settings
-        </div>
-        <div class="demo-box">
-          🔔 Notifications
-        </div>
-        <div class="demo-box">
-          ℹ️ About
-        </div>
+        <div class="demo-box">⚙️ Settings</div>
+        <div class="demo-box">🔔 Notifications</div>
+        <div class="demo-box">ℹ️ About</div>
       </div>
     `;
-    content.scrollIntoView({ behavior: "smooth" });
+    content.scrollIntoView({behavior:"smooth"});
   }
 }
