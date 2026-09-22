@@ -541,3 +541,60 @@ nav button:first-child {
 .stats div:hover {
   background: #111d27;
 }
+/* BANNER CSS */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -35px;
+  top: 25px;
+  border-radius: 50%;
+  border: 2px solid rgba(49,190,235,.35);
+  box-shadow:
+    0 0 20px rgba(30,170,220,.25),
+    inset 0 0 25px rgba(30,170,220,.15);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 2px;
+  right: -25px;
+  top: 115px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #28bde9,
+    #e3b64e
+  );
+  transform: rotate(-22deg);
+  box-shadow: 0 0 10px #28bde9;
+}
+
+.hero h1,
+.hero p {
+  position: relative;
+  z-index: 3;
+}
+
+.hero h1 {
+  max-width: 190px;
+  color: #f0c451;
+  font-size: 23px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(230,180,65,.35);
+}
+
+.hero p {
+  max-width: 170px;
+  color: #d7d7d7;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.hero .chart {
+  z-index: 2;
+}
+
