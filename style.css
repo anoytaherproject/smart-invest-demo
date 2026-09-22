@@ -684,4 +684,115 @@ nav button:first-child {
     left: 140%;
   }
 }
+/* DASHBOARD STATISTIK */
+
+.stats {
+  margin: 14px;
+  padding: 14px;
+  border: 1px solid #5f4920;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #111a22, #070b10);
+}
+
+.stats::before {
+  content: "ACCOUNT OVERVIEW";
+  display: block;
+  margin-bottom: 12px;
+  color: #e5b94f;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.stat {
+  transition: .25s ease;
+}
+
+.stat:active {
+  transform: scale(.97);
+}
+
+.stat b {
+  text-shadow: 0 0 8px rgba(45,194,228,.3);
+}
+
+/* GARIS PEMISAH */
+.stats .stat {
+  position: relative;
+}
+
+.stats .stat::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  width: 45%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #60491e
+  );
+}
+/* HEADER ZENITH NEXUS */
+
+header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  background: linear-gradient(180deg, #111a23, #080c11);
+  border-bottom: 1px solid #5f4920;
+}
+
+header .logo {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d3a83f;
+  border-radius: 12px;
+  color: #e7bd54;
+  font-weight: bold;
+  background: #080b0f;
+  box-shadow: 0 0 12px rgba(214,171,67,.2);
+}
+
+header h1 {
+  margin: 0;
+  color: #e5b94f;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+header small {
+  display: block;
+  margin-top: 3px;
+  color: #7fc5d8;
+  font-size: 8px;
+  letter-spacing: .5px;
+}
+
+header .status {
+  margin-left: auto;
+  padding: 5px 8px;
+  border: 1px solid #2d8c68;
+  border-radius: 20px;
+  color: #55d99d;
+  background: rgba(20,80,55,.18);
+  font-size: 8px;
+  font-weight: bold;
+}
+
+header .bell {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #60491e;
+  border-radius: 50%;
+  color: #e5b94f;
+  background: #0b1117;
+}
 
