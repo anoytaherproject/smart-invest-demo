@@ -34,43 +34,59 @@ function showPage(page) {
   }
 
   if (page === "investing") {
-    content.innerHTML = `
-      <div class="extra-card investing-page">
-        <h2>📊 INVESTING</h2>
-        <p class="sub">Pilih tampilan paket demo</p>
+  content.innerHTML = `
+    <div class="extra-card investing-page">
 
-        <div class="plan">
-          <div>
-            <b>STARTER</b>
-            <small>Contoh paket investasi</small>
-          </div>
-          <strong>DEMO</strong>
+      <h2>📊 INVESTING</h2>
+      <p class="sub">
+        Pilihan paket investasi — DEMO UI
+      </p>
+
+      <div class="plan">
+        <div>
+          <b>STARTER</b>
+          <small>Paket demo pemula</small>
         </div>
-
-        <div class="plan">
-          <div>
-            <b>STANDARD</b>
-            <small>Contoh paket investasi</small>
-          </div>
-          <strong>DEMO</strong>
-        </div>
-
-        <div class="plan">
-          <div>
-            <b>PREMIUM</b>
-            <small>Contoh paket investasi</small>
-          </div>
-          <strong>DEMO</strong>
-        </div>
-
-        <button class="demo-button" onclick="demo('Paket Demo')">
-          LIHAT DETAIL
-        </button>
+        <strong>DEMO</strong>
       </div>
-    `;
 
-    content.scrollIntoView({
-      behavior: "smooth"
+      <div class="plan">
+        <div>
+          <b>STANDARD</b>
+          <small>Paket demo standar</small>
+        </div>
+        <strong>DEMO</strong>
+      </div>
+
+      <div class="plan">
+        <div>
+          <b>PREMIUM</b>
+          <small>Paket demo premium</small>
+        </div>
+        <strong>DEMO</strong>
+      </div>
+
+      <div class="demo-box">
+        <b>ℹ️ DEMO MODE</b>
+        <span>
+          Ini hanya tampilan simulasi. Tidak ada
+          deposit, penarikan, atau transaksi uang nyata.
+        </span>
+      </div>
+
+      <button class="demo-button"
+        onclick="demo('Detail Paket')">
+        LIHAT DETAIL
+      </button>
+
+    </div>
+  `;
+
+  content.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
     });
   }
 
