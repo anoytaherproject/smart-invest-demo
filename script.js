@@ -123,15 +123,56 @@ function showPage(page) {
   }
 
   if (page === "menu") {
-    content.innerHTML = `
-      <div class="extra-card">
-        <h2>☰ MENU</h2>
+  content.innerHTML = `
+    <div class="extra-card menu-page">
 
-        <div class="demo-box">⚙️ Settings</div>
-        <div class="demo-box">🔔 Notifications</div>
-        <div class="demo-box">ℹ️ About</div>
+      <h2>☰ MENU</h2>
+      <p class="sub">Pengaturan aplikasi versi demo</p>
+
+      <div class="menu-item" onclick="demo('Profile')">
+        👤
+        <div>
+          <b>Profile</b>
+          <small>Informasi akun demo</small>
+        </div>
+        <strong>›</strong>
       </div>
-    `;
+
+      <div class="menu-item" onclick="demo('Notifications')">
+        🔔
+        <div>
+          <b>Notifications</b>
+          <small>Pengaturan pemberitahuan</small>
+        </div>
+        <strong>›</strong>
+      </div>
+
+      <div class="menu-item" onclick="demo('Security')">
+        🔐
+        <div>
+          <b>Security</b>
+          <small>Pengaturan keamanan</small>
+        </div>
+        <strong>›</strong>
+      </div>
+
+      <div class="menu-item" onclick="demo('About')">
+        ℹ️
+        <div>
+          <b>About</b>
+          <small>Informasi aplikasi demo</small>
+        </div>
+        <strong>›</strong>
+      </div>
+
+    </div>
+  `;
+
+  content.scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
 
     content.scrollIntoView({
       behavior: "smooth"
