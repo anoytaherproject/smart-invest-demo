@@ -1,1 +1,294 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #05070a;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  max-width: 480px;
+  margin: auto;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #17202b, #05070a 60%);
+  padding-bottom: 75px;
+}
+
+header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #8b6825;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #d9a936;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: #e8bd50;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+header b {
+  color: #e7b94b;
+  letter-spacing: 1px;
+}
+
+header small {
+  display: block;
+  font-size: 8px;
+  color: #bbb;
+  letter-spacing: 2px;
+}
+
+.bell {
+  margin-left: auto;
+  font-size: 22px;
+}
+
+main {
+  padding-top: 10px;
+}
+
+.hero {
+  margin: 10px 14px;
+  min-height: 205px;
+  padding: 20px 16px;
+  border: 1px solid #76551e;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 80% 50%, #17405c, #081019 45%, #05070a);
+}
+
+.hero small {
+  color: #e5b647;
+  font-weight: bold;
+}
+
+.hero h1 {
+  margin-top: 25px;
+  font-size: 25px;
+  line-height: 1.05;
+}
+
+.hero h1 span {
+  color: #f0bd45;
+}
+
+.hero p {
+  width: 65%;
+  color: #ccc;
+  font-size: 10px;
+}
+
+.chart {
+  position: absolute;
+  right: 15px;
+  bottom: 25px;
+  font-size: 100px;
+  color: #35aee6;
+  text-shadow: 0 0 20px #168bc0;
+}
+
+.bonus {
+  margin: 14px;
+  min-height: 65px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #74551f;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #121b24, #070d13);
+}
+
+.bonus div {
+  flex: 1;
+}
+
+.bonus b {
+  background: #d9b34e;
+  color: #17120a;
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+.bonus p {
+  margin: 7px 0 0;
+  font-size: 10px;
+  color: #ddd;
+}
+
+.bonus strong,
+.card strong,
+.spin > strong {
+  color: #e3b64e;
+  font-size: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 14px;
+}
+
+.card {
+  min-height: 125px;
+  padding: 15px;
+  border: 1px solid #735521;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #121b24, #070d13);
+  position: relative;
+}
+
+.card:first-child {
+  font-size: 35px;
+}
+
+.card:nth-child(2) {
+  font-size: 35px;
+}
+
+.card b {
+  display: block;
+  color: #edc258;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.card small {
+  display: block;
+  color: #bbb;
+  font-size: 9px;
+  margin-top: 5px;
+}
+
+.card strong {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+}
+
+.spin {
+  margin: 14px;
+  min-height: 110px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #735521;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #121b24, #070d13);
+}
+
+.wheel {
+  width: 82px;
+  height: 82px;
+  border: 4px double #e3b64e;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+  color: #f1c55a;
+}
+
+.spin div:nth-child(2) {
+  flex: 1;
+}
+
+.spin h2 {
+  margin: 0;
+  color: #efc45a;
+  font-size: 21px;
+}
+
+.spin p {
+  color: #bbb;
+  font-size: 9px;
+}
+
+.stats {
+  margin: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #60491e;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.stats div {
+  min-height: 80px;
+  padding: 9px 3px;
+  text-align: center;
+  border-right: 1px solid #29333d;
+  border-bottom: 1px solid #29333d;
+  font-size: 18px;
+}
+
+.stats small {
+  display: block;
+  color: #bbb;
+  font-size: 8px;
+  margin: 5px 0;
+}
+
+.stats b {
+  color: #2dc2e4;
+  font-size: 13px;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 480px);
+  height: 70px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #05080c;
+  border-top: 1px solid #70531e;
+  z-index: 10;
+}
+
+nav button {
+  border: 0;
+  background: none;
+  color: #aaa;
+  font-size: 24px;
+}
+
+nav button small {
+  display: block;
+  font-size: 9px;
+  margin-top: 3px;
+}
+
+nav button:first-child {
+  color: #e8bd50;
+}
+
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 21px;
+  }
+
+  .spin h2 {
+    font-size: 18px;
+  }
+}
 
