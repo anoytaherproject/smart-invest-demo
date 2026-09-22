@@ -1,98 +1,512 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zenith Nexus Demo</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zenith Nexus Demo</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#070c12;
+  color:#eee;
+  font-family:Arial,sans-serif;
+}
+
+.app{
+  max-width:720px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:100px;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:22px 25px;
+  border-bottom:1px solid #8b6a1c;
+  background:#101821;
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  border:3px solid #e5b93f;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  color:#e5b93f;
+  font-weight:bold;
+}
+
+header b{
+  display:block;
+  color:#e5b93f;
+  font-size:25px;
+}
+
+header small{
+  color:#aaa;
+  letter-spacing:4px;
+}
+
+.bell{
+  margin-left:auto;
+  font-size:35px;
+}
+
+/* MAIN */
+main{
+  padding:25px;
+}
+
+/* HERO */
+.hero{
+  min-height:360px;
+  padding:35px 27px;
+  border:1px solid #b88a21;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 80% 50%,#123b52,#071019 60%);
+  box-shadow:0 0 20px #806018;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden;
+}
+
+.hero small{
+  color:#e5b93f;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.hero h1{
+  margin-top:40px;
+  font-size:40px;
+  line-height:1;
+  color:#f0c54c;
+}
+
+.hero h1 span{
+  color:#f0c54c;
+}
+
+.hero p{
+  margin-top:30px;
+  color:#ccc;
+  font-size:18px;
+  line-height:1.7;
+}
+
+.chart{
+  font-size:100px;
+}
+
+/* BONUS */
+.bonus{
+  margin-top:25px;
+  padding:20px;
+  border:1px solid #896719;
+  border-radius:25px;
+  background:#090f15;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  cursor:pointer;
+}
+
+.bonus:first-letter{
+  font-size:35px;
+}
+
+.bonus b{
+  background:#e5b93f;
+  color:#111;
+  padding:7px 13px;
+  border-radius:8px;
+}
+
+.bonus p{
+  margin-top:10px;
+  color:#aaa;
+}
+
+.bonus strong{
+  margin-left:auto;
+  font-size:40px;
+  color:#e5b93f;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:25px;
+}
+
+.card{
+  min-height:200px;
+  padding:25px;
+  border:1px solid #80621d;
+  border-radius:25px;
+  background:#091017;
+  cursor:pointer;
+}
+
+.card:first-child,
+.card:nth-child(2){
+  font-size:35px;
+}
+
+.card b{
+  display:block;
+  margin-top:25px;
+  color:#e5b93f;
+  font-size:20px;
+}
+
+.card small{
+  display:block;
+  margin-top:10px;
+  color:#aaa;
+  font-size:15px;
+}
+
+.card strong{
+  float:right;
+  color:#e5b93f;
+  font-size:40px;
+}
+
+/* SPIN */
+.spin{
+  margin-top:25px;
+  padding:25px;
+  border:1px solid #80621d;
+  border-radius:25px;
+  background:#091017;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  cursor:pointer;
+}
+
+.wheel{
+  width:100px;
+  height:100px;
+  border:3px solid #e5b93f;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#e5b93f;
+  font-size:45px;
+}
+
+.spin h2{
+  color:#e5b93f;
+  font-size:30px;
+}
+
+.spin p{
+  color:#aaa;
+  margin-top:10px;
+}
+
+.spin strong{
+  margin-left:auto;
+  font-size:40px;
+  color:#e5b93f;
+}
+
+/* STATS */
+.stats{
+  margin-top:25px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid #263440;
+  border-radius:25px;
+  overflow:hidden;
+}
+
+.stats div{
+  min-height:125px;
+  padding:18px 8px;
+  text-align:center;
+  border-right:1px solid #263440;
+  border-bottom:1px solid #263440;
+  font-size:25px;
+}
+
+.stats small{
+  display:block;
+  margin:10px 0;
+  color:#aaa;
+  font-size:12px;
+}
+
+.stats b{
+  color:#27c7ed;
+  font-size:20px;
+}
+
+/* PAGE */
+.extra-page{
+  display:none;
+  margin-top:25px;
+  padding:30px;
+  border:1px solid #80621d;
+  border-radius:25px;
+  background:#091017;
+}
+
+.extra-page h2{
+  color:#e5b93f;
+  margin-bottom:15px;
+}
+
+.extra-page p{
+  color:#aaa;
+  line-height:1.7;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:720px;
+  height:90px;
+  background:#080d13;
+  border-top:1px solid #29333c;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  z-index:99;
+}
+
+nav button{
+  border:0;
+  background:transparent;
+  color:#aaa;
+  font-size:28px;
+  cursor:pointer;
+}
+
+nav button small{
+  display:block;
+  margin-top:5px;
+  font-size:14px;
+}
+
+nav button.active{
+  color:#e5b93f;
+}
+
+/* MOBILE */
+@media(max-width:500px){
+
+  .app{
+    width:100%;
+  }
+
+  header b{
+    font-size:20px;
+  }
+
+  header small{
+    font-size:9px;
+  }
+
+  .hero{
+    min-height:360px;
+  }
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .chart{
+    font-size:65px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .stats div{
+    min-height:120px;
+    font-size:20px;
+  }
+
+  .stats small{
+    font-size:10px;
+  }
+
+  .stats b{
+    font-size:17px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <header>
-    <div class="logo">ZN</div>
+<header>
+  <div class="logo">ZN</div>
+
+  <div>
+    <b>ZENITH NEXUS</b>
+    <small>SMART INVEST • DEMO</small>
+  </div>
+
+  <div class="bell">🔔</div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="homePage">
+
+  <section class="hero">
     <div>
-      <b>ZENITH NEXUS</b>
-      <small>SMART INVEST • DEMO</small>
+      <small>ZN • SMART INVEST</small>
+
+      <h1>
+        INVEST TODAY<br>
+        <span>BUILD TOMORROW</span>
+      </h1>
+
+      <p>
+        Contoh dashboard investasi untuk latihan web.
+      </p>
     </div>
-    <div class="bell">🔔</div>
-  </header>
 
-  <main>
+    <div class="chart">📈</div>
+  </section>
 
-    <section class="hero">
-      <div>
-        <small>ZN • SMART INVEST</small>
-        <h1>INVEST TODAY<br><span>BUILD TOMORROW</span></h1>
-        <p>Contoh dashboard investasi untuk latihan web.</p>
-      </div>
+  <div class="bonus" onclick="demo('BONUS')">
+    🎁
 
-      <div class="chart">📈</div>
-    </section>
+    <div>
+      <b>BONUS</b>
+      <p>Contoh promo deposit untuk UI demo</p>
+    </div>
 
-    <div class="bonus" onclick="demo('BONUS')">
+    <strong>›</strong>
+  </div>
+
+  <div class="cards">
+
+    <div class="card" onclick="demo('Kode Hadiah')">
       🎁
-      <div>
-        <b>BONUS</b>
-        <p>Contoh promo deposit untuk UI demo</p>
-      </div>
+      <b>KODE HADIAH</b>
+      <small>Contoh fitur bonus</small>
       <strong>›</strong>
     </div>
 
-    <div class="cards">
-
-      <div class="card" onclick="demo('Kode Hadiah')">
-        🎁
-        <b>KODE HADIAH</b>
-        <small>Contoh fitur bonus</small>
-        <strong>›</strong>
-      </div>
-
-      <div class="card" onclick="demo('Check-in')">
-        ⏱️
-        <b>CHECK-IN</b>
-        <small>Contoh fitur harian</small>
-        <strong>›</strong>
-      </div>
-
-    </div>
-
-    <div class="spin" onclick="spinLucky()">
-
-      <div class="wheel">✦</div>
-      <div>
-        <h2>LUCKY SPIN</h2>
-        <p>Demo interaksi UI — tanpa hadiah uang</p>
-      </div>
+    <div class="card" onclick="demo('Check-in')">
+      ⏱️
+      <b>CHECK-IN</b>
+      <small>Contoh fitur harian</small>
       <strong>›</strong>
     </div>
 
-    <section class="stats">
+  </div>
 
-      <div>🪙<small>Total Deposit</small><b>$0</b></div>
-      <div>📊<small>Total Investment</small><b>$0</b></div>
-      <div>📈<small>Total Profit</small><b>$0</b></div>
-      <div>💳<small>Total Withdraw</small><b>$0</b></div>
+  <div class="spin" onclick="spinLucky()">
 
-      <div>👥<small>Total Reference</small><b>0</b></div>
-      <div>🏆<small>Team Wins</small><b>$0</b></div>
-      <div>🎁<small>Deposit Bonus</small><b>$0</b></div>
-      <div>♛<small>Investment Bonus</small><b>$0</b></div>
+    <div class="wheel">✦</div>
 
-    <section id="pageContent" class="extra-page"></section>
+    <div>
+      <h2>LUCKY SPIN</h2>
+      <p>Demo interaksi UI — tanpa hadiah uang</p>
+    </div>
+
+    <strong>›</strong>
+
+  </div>
+
+  <section class="stats">
+
+    <div>
+      🪙
+      <small>Total Deposit</small>
+      <b>$0</b>
+    </div>
+
+    <div>
+      📊
+      <small>Total Investment</small>
+      <b>$0</b>
+    </div>
+
+    <div>
+      📈
+      <small>Total Profit</small>
+      <b>$0</b>
+    </div>
+
+    <div>
+      💳
+      <small>Total Withdraw</small>
+      <b>$0</b>
+    </div>
+
+    <div>
+      👥
+      <small>Total Reference</small>
+      <b>0</b>
+    </div>
+
+    <div>
+      🏆
+      <small>Team Wins</small>
+      <b>$0</b>
+    </div>
+
+    <div>
+      🎁
+      <small>Deposit Bonus</small>
+      <b>$0</b>
+    </div>
+
+    <div>
+      ♛
+      <small>Investment Bonus</small>
+      <b>$0</b>
+    </div>
+
+  </section>
+
+</section>
 
 
-  </main>
+<!-- HALAMAN DINAMIS -->
+<section id="pageContent" class="extra-page"></section>
 
-  <nav>
-    <button onclick="demo('Home')">⌂<small>Home</small></button>
-    <button onclick="demo('Investing')">▥<small>Investing</small></button>
-    <button onclick="demo('My Team')">♧<small>My Team</small></button>
-    <button onclick="demo('Menu')">☰<small>Menu</small></button>
-  <nav>
-  <button onclick="showPage('home')" id="homeBtn">
+</main>
+
+
+<!-- NAVIGASI -->
+<nav>
+
+  <button onclick="showPage('home')" id="homeBtn" class="active">
     ⌂
     <small>Home</small>
   </button>
@@ -111,13 +525,112 @@
     ☰
     <small>Menu</small>
   </button>
+
 </nav>
-
-
 
 </div>
 
-<script src="script.js"></script>
+
+<script>
+
+function showPage(page){
+
+  const home = document.getElementById("homePage");
+  const content = document.getElementById("pageContent");
+
+  const buttons = document.querySelectorAll("nav button");
+
+  buttons.forEach(button => {
+    button.classList.remove("active");
+  });
+
+  if(page === "home"){
+
+    home.style.display = "block";
+    content.style.display = "none";
+
+    document.getElementById("homeBtn").classList.add("active");
+
+  }
+
+  else if(page === "investing"){
+
+    home.style.display = "none";
+    content.style.display = "block";
+
+    content.innerHTML = `
+      <h2>INVESTING</h2>
+      <p>
+        Halaman Investing berhasil dibuka.
+      </p>
+      <br>
+      <p>
+        Ini masih berupa demo UI. 
+        Belum ada transaksi atau uang sungguhan.
+      </p>
+    `;
+
+    document.getElementById("investBtn").classList.add("active");
+
+  }
+
+  else if(page === "team"){
+
+    home.style.display = "none";
+    content.style.display = "block";
+
+    content.innerHTML = `
+      <h2>MY TEAM</h2>
+      <p>
+        Halaman My Team berhasil dibuka.
+      </p>
+      <br>
+      <p>
+        Total Reference: 0
+      </p>
+    `;
+
+    document.getElementById("teamBtn").classList.add("active");
+
+  }
+
+  else if(page === "menu"){
+
+    home.style.display = "none";
+    content.style.display = "block";
+
+    content.innerHTML = `
+      <h2>MENU</h2>
+      <p>
+        Menu Zenith Nexus Demo.
+      </p>
+      <br>
+      <p>• Profil</p>
+      <p>• Pengaturan</p>
+      <p>• Bantuan</p>
+    `;
+
+    document.getElementById("menuBtn").classList.add("active");
+
+  }
+
+}
+
+
+function demo(nama){
+
+  alert(nama + " — fitur demo berhasil diklik.");
+
+}
+
+
+function spinLucky(){
+
+  alert("Lucky Spin — ini hanya demo UI, tanpa hadiah uang.");
+
+}
+
+</script>
 
 </body>
 </html>
