@@ -291,4 +291,31 @@ nav button:first-child {
     font-size: 18px;
   }
 }
+.wheel {
+  transition: transform 1s ease;
+}
+
+.wheel:hover {
+  transform: rotate(360deg);
+}
+
+.spin {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.spin:active {
+  transform: scale(0.97);
+}
+
+.bonus,
+.card {
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.bonus:active,
+.card:active {
+  transform: scale(0.97);
+}
 
