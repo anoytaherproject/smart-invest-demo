@@ -2,9 +2,8 @@
 <html lang="id" class="dark">
 <head>
     <script>
-    // Cek apakah pengguna sudah pernah daftar/login
+    // Validasi Sesi Pengguna
     if (!localStorage.getItem('userData')) {
-        // Jika belum, alihkan ke halaman daftar
         window.location.href = 'daftar.html';
     }
     </script>
@@ -15,7 +14,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- FontAwesome 6 Pro CDN -->
+    <!-- FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
@@ -29,13 +28,14 @@
             theme: {
                 extend: {
                     colors: {
-                        obsidian: '#05070A',
-                        cardBg: '#0B0F17',
-                        cardHover: '#121824',
+                        obsidian: '#04060A',
+                        cardBg: '#0A0E17',
+                        cardHover: '#111726',
                         goldBase: '#D4AF37',
-                        goldLight: '#FFF1B0',
-                        goldDark: '#8A6A1C',
-                        cyanGlow: '#00F2FE',
+                        goldLight: '#F3E5AB',
+                        goldDark: '#997A15',
+                        emeraldGlow: '#10B981',
+                        accentCyan: '#06B6D4'
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
@@ -48,20 +48,17 @@
 
     <style>
         body {
-            background-color: #05070A;
-            color: #F1F5F9;
+            background-color: #04060A;
+            color: #F8FAFC;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Ambient animated dynamic background mesh */
+        /* Ambient Dynamic Background Mesh */
         .ambient-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            inset: 0;
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
@@ -70,69 +67,53 @@
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.22;
-            animation: floatOrb 18s ease-in-out infinite alternate;
+            filter: blur(100px);
+            opacity: 0.18;
+            animation: floatOrb 20s ease-in-out infinite alternate;
         }
 
         .orb-1 {
-            top: -10%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, #D4AF37 0%, #000 70%);
+            top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, #D4AF37 0%, transparent 70%);
         }
 
         .orb-2 {
-            bottom: -15%;
-            right: -10%;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, #4F46E5 0%, #000 70%);
-            animation-delay: -5s;
+            bottom: -15%; right: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, #059669 0%, transparent 70%);
+            animation-delay: -6s;
         }
 
         .orb-3 {
-            top: 40%;
-            left: 30%;
-            width: 35vw;
-            height: 35vw;
-            background: radial-gradient(circle, #00F2FE 0%, #000 70%);
-            animation-delay: -10s;
-            opacity: 0.12;
+            top: 35%; left: 25%; width: 40vw; height: 40vw;
+            background: radial-gradient(circle, #0284C7 0%, transparent 70%);
+            animation-delay: -12s;
+            opacity: 0.10;
         }
 
         @keyframes floatOrb {
             0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(40px, 60px) scale(1.15); }
-            100% { transform: translate(-30px, -40px) scale(0.9); }
+            50% { transform: translate(30px, 50px) scale(1.1); }
+            100% { transform: translate(-20px, -30px) scale(0.95); }
         }
 
-        /* Moving Liquid Metallic Gold Gradients */
+        /* Moving Liquid Gold Gradient Text */
         .gold-shimmer-text {
-            background: linear-gradient(
-                90deg, 
-                #BF953F 0%, 
-                #FCF6BA 25%, 
-                #B38728 50%, 
-                #FBF5B7 75%, 
-                #AA771C 100%
-            );
+            background: linear-gradient(90deg, #C5A059 0%, #FDF0A6 25%, #D4AF37 50%, #FDF0A6 75%, #A37C27 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shineText 4s linear infinite;
+            animation: shineText 5s linear infinite;
         }
 
         @keyframes shineText {
             to { background-position: 200% center; }
         }
 
-        /* Moving Shimmer Border */
+        /* Moving Luxury Border */
         .gold-shimmer-border {
             position: relative;
-            background: #0B0F17;
-            border-radius: 1rem;
+            background: #0A0E17;
+            border-radius: 1.25rem;
             z-index: 1;
         }
 
@@ -140,22 +121,15 @@
             content: '';
             position: absolute;
             inset: -1px;
-            border-radius: 1.05rem;
+            border-radius: 1.3rem;
             padding: 1px;
-            background: linear-gradient(
-                115deg, 
-                rgba(212, 175, 55, 0.8), 
-                rgba(255, 241, 176, 0.2), 
-                rgba(170, 119, 28, 0.9), 
-                rgba(255, 255, 255, 0.4),
-                rgba(212, 175, 55, 0.7)
-            );
-            background-size: 300% 300%;
+            background: linear-gradient(120deg, rgba(212,175,55,0.6), rgba(243,229,171,0.1), rgba(16,185,129,0.4), rgba(212,175,55,0.6));
+            background-size: 250% 250%;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             pointer-events: none;
-            animation: animateBorder 6s ease infinite;
+            animation: animateBorder 8s ease infinite;
         }
 
         @keyframes animateBorder {
@@ -165,11 +139,11 @@
         }
 
         .glass-card {
-            background: rgba(11, 15, 23, 0.75);
+            background: rgba(10, 14, 23, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .glass-card-hover {
@@ -177,29 +151,27 @@
         }
 
         .glass-card-hover:hover {
-            transform: translateY(-3px);
-            border-color: rgba(212, 175, 55, 0.45);
-            box-shadow: 0 12px 28px -5px rgba(212, 175, 55, 0.18);
+            transform: translateY(-2px);
+            border-color: rgba(212, 175, 55, 0.35);
+            box-shadow: 0 12px 28px -5px rgba(212, 175, 55, 0.15);
         }
 
         .gold-btn-moving {
-            background: linear-gradient(135deg, #D4AF37 0%, #FFDF00 50%, #AA771C 100%);
+            background: linear-gradient(135deg, #D4AF37 0%, #F5D061 50%, #A37C27 100%);
             background-size: 200% 200%;
-            animation: gradientBtn 3s ease infinite;
-            color: #05070A;
+            animation: gradientBtn 4s ease infinite;
+            color: #04060A;
             font-weight: 700;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
             transition: all 0.25s ease;
         }
 
         .gold-btn-moving:hover {
             transform: scale(1.02);
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
 
-        .gold-btn-moving:active {
-            transform: scale(0.98);
-        }
+        .gold-btn-moving:active { transform: scale(0.98); }
 
         @keyframes gradientBtn {
             0% { background-position: 0% 50%; }
@@ -212,12 +184,10 @@
         }
 
         @keyframes pulseGlow {
-            0%, 100% { filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)); }
-            50% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8)); }
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.25)); }
+            50% { filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.6)); }
         }
-        .glow-pulse {
-            animation: pulseGlow 2.5s infinite;
-        }
+        .glow-pulse { animation: pulseGlow 3s infinite; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-yellow-500 selection:text-black">
@@ -229,40 +199,40 @@
     </div>
 
     <!-- MAIN APP WRAPPER -->
-    <div class="relative z-10 w-full max-w-lg mx-auto min-h-screen flex flex-col pb-24 border-x border-yellow-900/10 bg-obsidian/40 backdrop-blur-3xl shadow-2xl">
+    <div class="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col pb-24 border-x border-yellow-500/10 bg-obsidian/60 backdrop-blur-3xl shadow-2xl">
 
         <!-- HEADER -->
-        <header class="sticky top-0 z-40 glass-card border-b border-yellow-500/20 px-4 py-3.5 flex items-center justify-between">
+        <header class="sticky top-0 z-40 glass-card border-b border-yellow-500/15 px-4 py-3.5 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="relative w-11 h-11 rounded-2xl gold-shimmer-border p-0.5 flex items-center justify-center glow-pulse">
-                    <div class="w-full h-full bg-obsidian rounded-[0.9rem] flex items-center justify-center overflow-hidden">
-                        <svg class="w-7 h-7" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="relative w-10 h-10 rounded-2xl gold-shimmer-border p-0.5 flex items-center justify-center glow-pulse">
+                    <div class="w-full h-full bg-obsidian rounded-[0.85rem] flex items-center justify-center overflow-hidden">
+                        <svg class="w-6 h-6" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 14H38L18 34H38" stroke="url(#goldLogoGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M10 14V34" stroke="url(#goldLogoGrad)" stroke-width="4" stroke-linecap="round"/>
-                            <circle cx="38" cy="14" r="3" fill="#FFF1B0"/>
+                            <circle cx="38" cy="14" r="3" fill="#F3E5AB"/>
                             <circle cx="10" cy="34" r="3" fill="#D4AF37"/>
                             <defs>
                                 <linearGradient id="goldLogoGrad" x1="10" y1="14" x2="38" y2="34" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="#FFF1B0"/>
+                                    <stop offset="0%" stop-color="#F3E5AB"/>
                                     <stop offset="50%" stop-color="#D4AF37"/>
-                                    <stop offset="100%" stop-color="#AA771C"/>
+                                    <stop offset="100%" stop-color="#A37C27"/>
                                 </linearGradient>
                             </defs>
                         </svg>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-base font-extrabold tracking-wider gold-shimmer-text uppercase leading-tight">ZENITH NEXUS</h1>
+                    <h1 class="text-sm font-extrabold tracking-wider gold-shimmer-text uppercase leading-tight">ZENITH NEXUS</h1>
                     <div class="flex items-center space-x-1.5">
                         <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span class="text-[10px] text-gray-400 font-semibold tracking-widest uppercase">SMART INVEST • DEMO</span>
+                        <span class="text-[10px] text-gray-400 font-semibold tracking-wider uppercase">SMART INVEST • LIVE</span>
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center space-x-2.5">
-                <button onclick="triggerNotification()" class="relative p-2.5 rounded-xl bg-cardBg border border-yellow-500/20 text-yellow-400 hover:bg-yellow-500/10 transition-colors">
-                    <i class="fa-solid fa-bell text-sm"></i>
+            <div class="flex items-center space-x-2">
+                <button onclick="triggerNotification()" class="relative p-2 rounded-xl bg-cardBg border border-yellow-500/20 text-yellow-400 hover:bg-yellow-500/10 transition-colors">
+                    <i class="fa-solid fa-bell text-xs"></i>
                     <span id="notifDot" class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
                 </button>
             </div>
@@ -281,77 +251,77 @@
                             <div>
                                 <span class="px-2.5 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-[10px] font-bold tracking-wider uppercase inline-flex items-center space-x-1.5">
                                     <i class="fa-solid fa-crown text-[10px]"></i>
-                                    <span>ZN • SMART INVEST</span>
+                                    <span>PORTFOLIO OVERVIEW</span>
                                 </span>
-                                <h2 class="text-xl sm:text-2xl font-black text-white tracking-wide mt-2 leading-snug">
+                                <h2 class="text-lg font-black text-white tracking-wide mt-2 leading-snug">
                                     INVEST TODAY<br><span class="gold-shimmer-text">BUILD TOMORROW</span>
                                 </h2>
                             </div>
                             
                             <!-- Live Financial Canvas Chart -->
-                            <div class="w-24 h-16 relative flex items-center justify-center">
+                            <div class="w-24 h-14 relative flex items-center justify-center">
                                 <canvas id="heroChartCanvas" class="w-full h-full"></canvas>
                             </div>
                         </div>
 
-                        <p class="text-xs text-gray-400 max-w-xs leading-relaxed">
-                            Dashboard simulasi investasi untuk latihan antarmuka web dengan kalkulasi realtime.
+                        <p class="text-[11px] text-gray-400 max-w-xs leading-relaxed">
+                            Selamat datang, <strong id="user-display-name" class="text-yellow-400">Investor</strong>.
                         </p>
 
                         <div class="pt-2 border-t border-yellow-500/15 flex items-center justify-between">
-                            <span class="text-[11px] text-gray-400 font-medium">Portofolio Realtime:</span>
-                            <span id="heroTotalPortfolio" class="text-lg font-mono font-extrabold gold-shimmer-text">$0.00</span>
+                            <span class="text-[11px] text-gray-400 font-medium">Total Portofolio:</span>
+                            <span id="heroTotalPortfolio" class="text-base font-mono font-extrabold gold-shimmer-text">$0.00</span>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center space-x-2">
+                    <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center space-x-2">
                         <i class="fa-solid fa-bolt text-yellow-400"></i>
-                        <span>Quick Actions</span>
+                        <span>Aksi Cepat</span>
                     </h3>
 
                     <div class="grid grid-cols-2 gap-3">
-                        <div onclick="openModal('giftModal')" class="glass-card glass-card-hover p-4 rounded-2xl cursor-pointer group flex flex-col justify-between space-y-3 relative overflow-hidden">
+                        <div onclick="openModal('giftModal')" class="glass-card glass-card-hover p-3.5 rounded-2xl cursor-pointer group flex flex-col justify-between space-y-2.5">
                             <div class="flex items-center justify-between">
-                                <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform">
-                                    <i class="fa-solid fa-gift text-lg"></i>
+                                <div class="w-9 h-9 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:scale-105 transition-transform">
+                                    <i class="fa-solid fa-gift text-sm"></i>
                                 </div>
-                                <i class="fa-solid fa-chevron-right text-xs text-gray-600 group-hover:text-yellow-400 group-hover:translate-x-1 transition-all"></i>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-gray-600 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all"></i>
                             </div>
                             <div>
                                 <h4 class="text-xs font-bold text-white tracking-wide uppercase">KODE HADIAH</h4>
-                                <p class="text-[10px] text-gray-400 mt-0.5">Masukkan kode bonus demo.</p>
+                                <p class="text-[10px] text-gray-400 mt-0.5">Klaim bonus promo</p>
                             </div>
                         </div>
 
-                        <div onclick="claimDailyCheckin()" class="glass-card glass-card-hover p-4 rounded-2xl cursor-pointer group flex flex-col justify-between space-y-3 relative overflow-hidden">
+                        <div onclick="claimDailyCheckin()" class="glass-card glass-card-hover p-3.5 rounded-2xl cursor-pointer group flex flex-col justify-between space-y-2.5">
                             <div class="flex items-center justify-between">
-                                <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform">
-                                    <i class="fa-solid fa-stopwatch text-lg"></i>
+                                <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                                    <i class="fa-solid fa-calendar-check text-sm"></i>
                                 </div>
-                                <span id="checkinBadge" class="text-[9px] font-extrabold text-yellow-400 bg-yellow-500/15 border border-yellow-500/30 px-2 py-0.5 rounded-full">+$50</span>
+                                <span id="checkinBadge" class="text-[9px] font-extrabold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full">+$50</span>
                             </div>
                             <div>
                                 <h4 class="text-xs font-bold text-white tracking-wide uppercase">CHECK-IN</h4>
-                                <p class="text-[10px] text-gray-400 mt-0.5">Simulasi check-in harian.</p>
+                                <p class="text-[10px] text-gray-400 mt-0.5">Bonus harian</p>
                             </div>
                         </div>
 
-                        <div onclick="openModal('spinModal')" class="col-span-2 glass-card glass-card-hover p-4 rounded-2xl cursor-pointer group flex items-center justify-between relative overflow-hidden">
-                            <div class="flex items-center space-x-3.5">
-                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-yellow-600 to-yellow-300 p-0.5 shadow-lg shadow-yellow-500/20 group-hover:rotate-12 transition-transform">
-                                    <div class="w-full h-full bg-obsidian rounded-[0.85rem] flex items-center justify-center">
-                                        <i class="fa-solid fa-dharmachakra text-xl text-yellow-400"></i>
+                        <div onclick="openModal('spinModal')" class="col-span-2 glass-card glass-card-hover p-3.5 rounded-2xl cursor-pointer group flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-600 to-yellow-300 p-0.5 shadow-md shadow-yellow-500/10">
+                                    <div class="w-full h-full bg-obsidian rounded-[0.6rem] flex items-center justify-center">
+                                        <i class="fa-solid fa-dharmachakra text-base text-yellow-400 group-hover:rotate-45 transition-transform"></i>
                                     </div>
                                 </div>
                                 <div>
                                     <h4 class="text-xs font-bold text-white tracking-wide uppercase">LUCKY SPIN</h4>
-                                    <p class="text-[10px] text-gray-400">Demo interaksi UI — tanpa hadiah uang.</p>
+                                    <p class="text-[10px] text-gray-400">Putar roda keberuntungan</p>
                                 </div>
                             </div>
-                            <div class="w-8 h-8 rounded-full bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-500 group-hover:text-black transition-all">
-                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            <div class="w-7 h-7 rounded-full bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 group-hover:bg-yellow-500 group-hover:text-black transition-all">
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
                             </div>
                         </div>
                     </div>
@@ -359,91 +329,91 @@
 
                 <div>
                     <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center space-x-2">
+                        <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-widest flex items-center space-x-2">
                             <i class="fa-solid fa-chart-pie text-yellow-400"></i>
-                            <span>Statistik Akun Demo</span>
+                            <span>Statistik Akun</span>
                         </h3>
-                        <button onclick="resetData()" class="text-[10px] text-gray-500 hover:text-yellow-400 underline">Reset Data</button>
+                        <button onclick="resetData()" class="text-[10px] text-gray-500 hover:text-yellow-400 transition-colors">Reset</button>
                     </div>
 
                     <div class="grid grid-cols-2 gap-2.5">
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
-                                <i class="fa-solid fa-building-columns"></i>
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                                <i class="fa-solid fa-wallet"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Deposit</span>
-                                <span class="text-xs font-mono font-bold text-cyan-300" id="statDeposit">$0.00</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Total Deposit</span>
+                                <span class="text-xs font-mono font-bold text-gray-200" id="statDeposit">$0.00</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xs shrink-0">
                                 <i class="fa-solid fa-chart-line"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Investment</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Total Investment</span>
                                 <span class="text-xs font-mono font-bold text-cyan-300" id="statInvestment">$0.00</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3 relative overflow-hidden">
-                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs shrink-0">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs shrink-0">
                                 <i class="fa-solid fa-arrow-trend-up"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Profit</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Total Profit</span>
                                 <span class="text-xs font-mono font-bold text-emerald-400" id="statProfit">$0.00</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xs shrink-0">
                                 <i class="fa-solid fa-credit-card"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Withdraw</span>
-                                <span class="text-xs font-mono font-bold text-cyan-300" id="statWithdraw">$0.00</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Total Withdraw</span>
+                                <span class="text-xs font-mono font-bold text-purple-300" id="statWithdraw">$0.00</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xs shrink-0">
                                 <i class="fa-solid fa-user-group"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Total Reference</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Total Reference</span>
                                 <span class="text-xs font-mono font-bold text-white" id="statRef">0</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xs shrink-0">
                                 <i class="fa-solid fa-trophy"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Team Wins</span>
-                                <span class="text-xs font-mono font-bold text-cyan-300" id="statTeamWins">$0.00</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Team Wins</span>
+                                <span class="text-xs font-mono font-bold text-amber-300" id="statTeamWins">$0.00</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
                                 <i class="fa-solid fa-coins"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Deposit Bonus</span>
-                                <span class="text-xs font-mono font-bold text-cyan-300" id="statDepBonus">$0.00</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Deposit Bonus</span>
+                                <span class="text-xs font-mono font-bold text-yellow-300" id="statDepBonus">$0.00</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-3 rounded-xl flex items-center space-x-3">
-                            <div class="w-9 h-9 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xs shrink-0">
+                        <div class="glass-card p-3 rounded-xl flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 text-xs shrink-0">
                                 <i class="fa-solid fa-gem"></i>
                             </div>
                             <div class="overflow-hidden">
-                                <span class="text-[10px] font-semibold text-gray-400 block truncate">Investment Bonus</span>
-                                <span class="text-xs font-mono font-bold text-cyan-300" id="statInvBonus">$0.00</span>
+                                <span class="text-[9px] font-semibold text-gray-400 block truncate">Investment Bonus</span>
+                                <span class="text-xs font-mono font-bold text-teal-300" id="statInvBonus">$0.00</span>
                             </div>
                         </div>
                     </div>
@@ -452,37 +422,37 @@
 
             <!-- TAB: INVESTING -->
             <div id="tab-investing" class="tab-page space-y-4 hidden">
-                <div class="glass-card p-4 rounded-2xl border border-yellow-500/20 space-y-3">
-                    <h3 class="text-sm font-bold text-white">Paket Investasi Demo</h3>
-                    <p class="text-xs text-gray-400">Pilih paket untuk mengaktifkan pertumbuhan saldo harian.</p>
+                <div class="glass-card p-4 rounded-2xl space-y-1">
+                    <h3 class="text-sm font-bold text-white">Paket Investasi</h3>
+                    <p class="text-xs text-gray-400">Pilih paket investasi untuk mengaktifkan imbal hasil harian.</p>
                 </div>
 
                 <div class="space-y-3">
                     <div class="glass-card p-4 rounded-2xl border border-yellow-500/20 space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LOW RISK</span>
-                            <span class="text-xs text-gray-400">Durasi: 30 Hari</span>
+                            <span class="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">LOW RISK</span>
+                            <span class="text-[11px] text-gray-400">Durasi: 30 Hari</span>
                         </div>
                         <div class="flex justify-between items-end">
                             <div>
-                                <h4 class="text-sm font-extrabold text-white">BRONZE VAULT</h4>
-                                <div class="text-xl font-mono font-bold text-yellow-400 mt-0.5">1.5% <span class="text-xs text-gray-400 font-normal">/ hari</span></div>
+                                <h4 class="text-xs font-extrabold text-white">BRONZE VAULT</h4>
+                                <div class="text-lg font-mono font-bold text-yellow-400 mt-0.5">1.5% <span class="text-[10px] text-gray-400 font-normal">/ hari</span></div>
                             </div>
-                            <button onclick="investPackage('BRONZE VAULT', 50, 1.5)" class="gold-btn-moving px-4 py-2 rounded-xl text-xs font-bold">Invest $50</button>
+                            <button onclick="investPackage('BRONZE VAULT', 50, 1.5)" class="gold-btn-moving px-3.5 py-1.5 rounded-xl text-xs font-bold">Invest $50</button>
                         </div>
                     </div>
 
                     <div class="gold-shimmer-border p-4 space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-yellow-300 bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30">MOST POPULAR</span>
-                            <span class="text-xs text-gray-400">Durasi: 60 Hari</span>
+                            <span class="text-[10px] font-bold text-yellow-300 bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30">MOST POPULAR</span>
+                            <span class="text-[11px] text-gray-400">Durasi: 60 Hari</span>
                         </div>
                         <div class="flex justify-between items-end">
                             <div>
-                                <h4 class="text-sm font-extrabold text-white">GOLD NEXUS</h4>
-                                <div class="text-xl font-mono font-bold text-yellow-400 mt-0.5">3.2% <span class="text-xs text-gray-400 font-normal">/ hari</span></div>
+                                <h4 class="text-xs font-extrabold text-white">GOLD NEXUS</h4>
+                                <div class="text-lg font-mono font-bold text-yellow-400 mt-0.5">3.2% <span class="text-[10px] text-gray-400 font-normal">/ hari</span></div>
                             </div>
-                            <button onclick="investPackage('GOLD NEXUS', 200, 3.2)" class="gold-btn-moving px-4 py-2 rounded-xl text-xs font-bold">Invest $200</button>
+                            <button onclick="investPackage('GOLD NEXUS', 200, 3.2)" class="gold-btn-moving px-3.5 py-1.5 rounded-xl text-xs font-bold">Invest $200</button>
                         </div>
                     </div>
                 </div>
@@ -490,48 +460,60 @@
 
             <!-- TAB: MY TEAM -->
             <div id="tab-team" class="tab-page space-y-4 hidden">
-                <div class="glass-card p-5 rounded-2xl border border-yellow-500/20 space-y-4">
-                    <h3 class="text-sm font-bold text-white">Tim & Referral jaringan</h3>
+                <div class="glass-card p-4 rounded-2xl space-y-4">
+                    <div>
+                        <h3 class="text-sm font-bold text-white">Tim & Referral Jaringan</h3>
+                        <p class="text-xs text-gray-400 mt-1">Undang mitra baru dan dapatkan komisi tambahan.</p>
+                    </div>
+
                     <div class="bg-obsidian/80 p-3.5 rounded-xl border border-yellow-500/20 flex items-center justify-between">
                         <div>
-                            <span class="text-[10px] text-gray-400 uppercase font-semibold">Kode Referral</span>
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold">Kode Referral Anda</span>
                             <div class="text-sm font-mono font-bold text-yellow-400">ZN-889921</div>
                         </div>
-                        <button onclick="copyRef()" class="gold-btn-moving px-3 py-1.5 rounded-lg text-xs font-bold">Salin Link</button>
+                        <button onclick="copyRef()" class="gold-btn-moving px-3 py-1.5 rounded-lg text-xs font-bold">Salin Kode</button>
                     </div>
                 </div>
             </div>
 
             <!-- TAB: MENU -->
             <div id="tab-menu" class="tab-page space-y-4 hidden">
-                <div class="glass-card p-5 rounded-2xl border border-yellow-500/20 space-y-4">
-                    <div class="flex items-center space-x-3.5 border-b border-gray-800 pb-4">
-                        <div class="w-12 h-12 rounded-xl gold-shimmer-border p-0.5">
-                            <div class="w-full h-full bg-obsidian rounded-[0.7rem] flex items-center justify-center text-yellow-400">
-                                <i class="fa-solid fa-user-gear text-lg"></i>
+                <div class="glass-card p-4 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-3 border-b border-gray-800/80 pb-4">
+                        <div class="w-10 h-10 rounded-xl gold-shimmer-border p-0.5">
+                            <div class="w-full h-full bg-obsidian rounded-[0.6rem] flex items-center justify-center text-yellow-400">
+                                <i class="fa-solid fa-user-check text-sm"></i>
                             </div>
                         </div>
                         <div>
-                            <h4 class="text-sm font-bold text-white">Demo User Account</h4>
-                            <span class="text-xs font-mono text-yellow-400">VIP MEMBER • ACTIVE</span>
+                            <h4 id="menu-user-name" class="text-xs font-bold text-white">User Member</h4>
+                            <span class="text-[10px] font-mono text-emerald-400">VIP MEMBER • ACTIVE</span>
                         </div>
                     </div>
 
                     <div class="space-y-2">
-                        <button onclick="openModal('depositModal')" class="w-full p-3 rounded-xl bg-cardBg hover:bg-cardHover border border-gray-800 flex items-center justify-between text-xs font-semibold text-white">
+                        <button onclick="openModal('depositModal')" class="w-full p-3 rounded-xl bg-cardBg hover:bg-cardHover border border-gray-800 flex items-center justify-between text-xs font-semibold text-white transition-colors">
                             <span class="flex items-center space-x-2.5">
-                                <i class="fa-solid fa-circle-plus text-emerald-400"></i>
-                                <span>Simulasi Top Up Deposit</span>
+                                <i class="fa-solid fa-circle-plus text-emerald-400 text-sm"></i>
+                                <span>Simulasi Deposit</span>
                             </span>
-                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                            <i class="fa-solid fa-chevron-right text-[10px] text-gray-600"></i>
                         </button>
 
-                        <button onclick="openModal('withdrawModal')" class="w-full p-3 rounded-xl bg-cardBg hover:bg-cardHover border border-gray-800 flex items-center justify-between text-xs font-semibold text-white">
+                        <button onclick="openModal('withdrawModal')" class="w-full p-3 rounded-xl bg-cardBg hover:bg-cardHover border border-gray-800 flex items-center justify-between text-xs font-semibold text-white transition-colors">
                             <span class="flex items-center space-x-2.5">
-                                <i class="fa-solid fa-circle-arrow-up text-yellow-400"></i>
+                                <i class="fa-solid fa-circle-arrow-up text-yellow-400 text-sm"></i>
                                 <span>Simulasi Penarikan Profit</span>
                             </span>
-                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                            <i class="fa-solid fa-chevron-right text-[10px] text-gray-600"></i>
+                        </button>
+
+                        <button onclick="handleLogout()" class="w-full p-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 flex items-center justify-between text-xs font-semibold text-red-400 transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                                <span>Keluar dari Akun</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-[10px] text-red-400/50"></i>
                         </button>
                     </div>
                 </div>
@@ -543,18 +525,18 @@
         <div id="giftModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
             <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-4">
                 <button onclick="closeModal('giftModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                    <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
                 <div class="text-center space-y-1">
                     <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center mx-auto text-yellow-400">
-                        <i class="fa-solid fa-gift text-lg"></i>
+                        <i class="fa-solid fa-gift text-base"></i>
                     </div>
-                    <h4 class="text-sm font-bold text-white pt-1">Klaim Kode Hadiah</h4>
-                    <p class="text-[11px] text-gray-400">Gunakan kode <strong class="text-yellow-400">ZENITH2026</strong> untuk bonus demo $500.</p>
+                    <h4 class="text-xs font-bold text-white pt-1">Klaim Kode Hadiah</h4>
+                    <p class="text-[11px] text-gray-400">Gunakan kode <strong class="text-yellow-400">ZENITH2026</strong> untuk bonus $500.</p>
                 </div>
                 <div class="space-y-2.5">
-                    <input type="text" id="giftInput" placeholder="ZENITH2026" class="w-full px-3.5 py-2.5 bg-obsidian border border-yellow-500/30 rounded-xl text-xs font-mono tracking-widest uppercase text-yellow-300 focus:outline-none focus:border-yellow-400 text-center">
-                    <button onclick="submitGift()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold uppercase">Klaim Bonus</button>
+                    <input type="text" id="giftInput" placeholder="ZENITH2026" class="w-full px-3.5 py-2 bg-obsidian border border-yellow-500/30 rounded-xl text-xs font-mono tracking-widest uppercase text-yellow-300 focus:outline-none focus:border-yellow-400 text-center">
+                    <button onclick="submitGift()" class="w-full gold-btn-moving py-2 rounded-xl text-xs font-bold uppercase">Klaim Bonus</button>
                 </div>
             </div>
         </div>
@@ -563,27 +545,27 @@
         <div id="spinModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
             <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-4 text-center">
                 <button onclick="closeModal('spinModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                    <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
                 
                 <div>
-                    <h4 class="text-sm font-bold text-white">Lucky Spin Nexus</h4>
-                    <p class="text-[11px] text-gray-400">Putar roda dan klaim bonus demo.</p>
+                    <h4 class="text-xs font-bold text-white">Lucky Spin Nexus</h4>
+                    <p class="text-[11px] text-gray-400">Putar roda dan klaim bonus tambahan.</p>
                 </div>
 
-                <div class="relative w-48 h-48 mx-auto flex items-center justify-center py-2">
-                    <div class="absolute -top-1 z-20 text-yellow-400 text-xl">
+                <div class="relative w-44 h-44 mx-auto flex items-center justify-center py-2">
+                    <div class="absolute -top-1 z-20 text-yellow-400 text-lg">
                         <i class="fa-solid fa-caret-down"></i>
                     </div>
                     <div id="spinWheel" class="wheel-spinner w-full h-full rounded-full border-4 border-yellow-500/60 shadow-lg shadow-yellow-500/20 bg-gradient-to-tr from-yellow-900/40 via-obsidian to-yellow-600/30 flex items-center justify-center overflow-hidden">
                         <div class="text-center space-y-1">
-                            <i class="fa-solid fa-crown text-2xl gold-shimmer-text"></i>
-                            <div class="text-[10px] font-bold text-yellow-300 uppercase tracking-wider">SPIN & WIN</div>
+                            <i class="fa-solid fa-crown text-xl gold-shimmer-text"></i>
+                            <div class="text-[9px] font-bold text-yellow-300 uppercase tracking-wider">SPIN & WIN</div>
                         </div>
                     </div>
                 </div>
 
-                <button id="spinBtn" onclick="runSpin()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold uppercase">Putar Roda</button>
+                <button id="spinBtn" onclick="runSpin()" class="w-full gold-btn-moving py-2 rounded-xl text-xs font-bold uppercase">Putar Roda</button>
             </div>
         </div>
 
@@ -591,11 +573,11 @@
         <div id="depositModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
             <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-3">
                 <button onclick="closeModal('depositModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                    <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
-                <h4 class="text-sm font-bold text-white">Top Up Deposit Demo</h4>
-                <input type="number" id="depAmt" value="100" class="w-full px-3.5 py-2.5 bg-obsidian border border-gray-700 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-yellow-400">
-                <button onclick="submitDeposit()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold">Konfirmasi Deposit</button>
+                <h4 class="text-xs font-bold text-white">Top Up Deposit</h4>
+                <input type="number" id="depAmt" value="100" class="w-full px-3.5 py-2 bg-obsidian border border-gray-700 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-yellow-400">
+                <button onclick="submitDeposit()" class="w-full gold-btn-moving py-2 rounded-xl text-xs font-bold">Konfirmasi Deposit</button>
             </div>
         </div>
 
@@ -603,36 +585,37 @@
         <div id="withdrawModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
             <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-yellow-500/30 relative space-y-3">
                 <button onclick="closeModal('withdrawModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                    <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
-                <h4 class="text-sm font-bold text-white">Penarikan Profit Demo</h4>
-                <input type="number" id="wdAmt" value="50" class="w-full px-3.5 py-2.5 bg-obsidian border border-gray-700 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-yellow-400">
-                <button onclick="submitWithdraw()" class="w-full gold-btn-moving py-2.5 rounded-xl text-xs font-bold">Proses Penarikan</button>
+                <h4 class="text-xs font-bold text-white">Penarikan Profit</h4>
+                <input type="number" id="wdAmt" value="50" class="w-full px-3.5 py-2 bg-obsidian border border-gray-700 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-yellow-400">
+                <button onclick="submitWithdraw()" class="w-full gold-btn-moving py-2 rounded-xl text-xs font-bold">Proses Penarikan</button>
             </div>
         </div>
 
+        <!-- TOAST NOTIFICATION -->
         <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-xs w-full px-4 py-3 rounded-xl glass-card border border-yellow-500/30 transition-all duration-300 transform -translate-y-12 opacity-0 flex items-center space-x-3 pointer-events-none">
             <div id="toastIcon"></div>
             <div id="toastMsg" class="text-xs font-medium text-white"></div>
         </div>
 
         <!-- BOTTOM NAVIGATION BAR -->
-        <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-lg mx-auto glass-card border-t border-yellow-500/20 px-6 py-2.5 flex items-center justify-around">
+        <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-md mx-auto glass-card border-t border-yellow-500/20 px-6 py-2.5 flex items-center justify-around">
             <button onclick="switchTab('home')" id="nav-home" class="nav-item flex flex-col items-center space-y-1 text-yellow-400">
-                <i class="fa-solid fa-house text-base"></i>
-                <span class="text-[10px] font-bold tracking-wider">Home</span>
+                <i class="fa-solid fa-house text-sm"></i>
+                <span class="text-[9px] font-bold tracking-wider uppercase">Home</span>
             </button>
             <button onclick="switchTab('investing')" id="nav-investing" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
-                <i class="fa-solid fa-chart-simple text-base"></i>
-                <span class="text-[10px] font-bold tracking-wider">Investing</span>
+                <i class="fa-solid fa-chart-simple text-sm"></i>
+                <span class="text-[9px] font-bold tracking-wider uppercase">Invest</span>
             </button>
             <button onclick="switchTab('team')" id="nav-team" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
-                <i class="fa-solid fa-users text-base"></i>
-                <span class="text-[10px] font-bold tracking-wider">My Team</span>
+                <i class="fa-solid fa-users text-sm"></i>
+                <span class="text-[9px] font-bold tracking-wider uppercase">Tim</span>
             </button>
             <button onclick="switchTab('menu')" id="nav-menu" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
-                <i class="fa-solid fa-bars text-base"></i>
-                <span class="text-[10px] font-bold tracking-wider">Menu</span>
+                <i class="fa-solid fa-bars text-sm"></i>
+                <span class="text-[9px] font-bold tracking-wider uppercase">Menu</span>
             </button>
         </nav>
 
@@ -653,6 +636,16 @@
         };
 
         window.onload = function() {
+            // Load Sesi Pengguna
+            const savedData = localStorage.getItem('userData');
+            if (savedData) {
+                const user = JSON.parse(savedData);
+                const nameDisplay = document.getElementById('user-display-name');
+                const menuNameDisplay = document.getElementById('menu-user-name');
+                if (nameDisplay && user.name) nameDisplay.innerText = user.name;
+                if (menuNameDisplay && user.name) menuNameDisplay.innerText = user.name;
+            }
+
             loadState();
             updateStatsUI();
             initHeroCanvasChart();
@@ -710,11 +703,11 @@
 
             message.innerText = msg;
             if (type === 'success') {
-                icon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>';
+                icon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>';
             } else if (type === 'error') {
-                icon.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-400 text-base"></i>';
+                icon.innerHTML = '<i class="fa-solid fa-circle-xmark text-red-400 text-sm"></i>';
             } else {
-                icon.innerHTML = '<i class="fa-solid fa-circle-info text-cyan-400 text-base"></i>';
+                icon.innerHTML = '<i class="fa-solid fa-circle-info text-cyan-400 text-sm"></i>';
             }
 
             toast.classList.remove('-translate-y-12', 'opacity-0');
@@ -776,7 +769,7 @@
                 saveState();
                 isSpinning = false;
                 closeModal('spinModal');
-                showToast(`Lucky Spin Berhasil! Menang +$${prize}!`);
+                showToast(`Lucky Spin Berhasil! Bonus +$${prize}!`);
             }, 4500);
         }
 
@@ -818,17 +811,28 @@
         }
 
         function copyRef() {
-            showToast('Link referral disalin!');
+            navigator.clipboard.writeText('ZN-889921');
+            showToast('Kode referral disalin!');
         }
 
         function triggerNotification() {
-            document.getElementById('notifDot').classList.add('hidden');
+            const notifDot = document.getElementById('notifDot');
+            if(notifDot) notifDot.classList.add('hidden');
             showToast('Semua notifikasi sudah dibaca.', 'info');
         }
 
         function resetData() {
-            localStorage.removeItem('zenith_ultra_state');
-            location.reload();
+            if(confirm('Reset semua data aplikasi?')) {
+                localStorage.removeItem('zenith_ultra_state');
+                location.reload();
+            }
+        }
+
+        function handleLogout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                localStorage.removeItem('userData');
+                window.location.href = 'daftar.html';
+            }
         }
 
         function saveState() {
@@ -836,7 +840,7 @@
         }
 
         function loadState() {
-            const saved = localStorage.getItem('zenith_ultra_state');
+            const saved = localStorage.setItem ? localStorage.getItem('zenith_ultra_state') : null;
             if (saved) {
                 try { state = { ...state, ...JSON.parse(saved) }; } catch(e){}
             }
@@ -863,11 +867,11 @@
 
                 let gradient = ctx.createLinearGradient(0, 0, width, 0);
                 gradient.addColorStop(0, '#D4AF37');
-                gradient.addColorStop(0.5, '#FFF1B0');
-                gradient.addColorStop(1, '#00F2FE');
+                gradient.addColorStop(0.5, '#F3E5AB');
+                gradient.addColorStop(1, '#10B981');
 
                 ctx.beginPath();
-                ctx.lineWidth = 3;
+                ctx.lineWidth = 2.5;
                 ctx.strokeStyle = gradient;
 
                 for (let i = 0; i < points.length - 1; i++) {
@@ -878,10 +882,10 @@
 
                 let lastPoint = points[points.length - 1];
                 ctx.beginPath();
-                ctx.arc(lastPoint.x - 2, lastPoint.y + 2, 4, 0, Math.PI * 2);
-                ctx.fillStyle = '#00F2FE';
-                ctx.shadowColor = '#00F2FE';
-                ctx.shadowBlur = 10;
+                ctx.arc(lastPoint.x - 2, lastPoint.y + 2, 3.5, 0, Math.PI * 2);
+                ctx.fillStyle = '#10B981';
+                ctx.shadowColor = '#10B981';
+                ctx.shadowBlur = 8;
                 ctx.fill();
 
                 requestAnimationFrame(animateChart);
@@ -890,30 +894,5 @@
             animateChart();
         }
     </script>
-    <script>
-    // 1. Cek apakah pengguna sudah daftar/login
-    const savedData = localStorage.getItem('userData');
-    if (!savedData) {
-        // Jika belum ada data, lempar kembali ke halaman daftar
-        window.location.href = 'daftar.html';
-    } else {
-        // 2. Tampilkan Nama dan Email pengguna yang terdaftar ke Dashboard
-        const user = JSON.parse(savedData);
-        const nameDisplay = document.getElementById('user-display-name');
-        if (nameDisplay && user.name) {
-            nameDisplay.innerText = user.name;
-        }
-    }
-
-    // 3. Fungsi Logout
-    function handleLogout() {
-        if (confirm('Apakah Anda yakin ingin keluar?')) {
-            // Hapus data login dari browser
-            localStorage.removeItem('userData');
-            // Kembali ke halaman pendaftaran
-            window.location.href = 'daftar.html';
-        }
-    }
-</script>
 </body>
-</html>
+            </html>
