@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENITH NEXUS - SMART INVEST</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        bgDark: '#080a0f',
+                        cardDark: '#0d111a',
+                        cardHover: '#131926',
+                        gold: {
+                            400: '#f6d365',
+                            500: '#e5ac24',
+                            600: '#c28e11',
+                        },
+                        cyan: {
+                            accent: '#2dd4bf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #06080d;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff2ac 0%, #e5ac24 50%, #9a6f08 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-glow {
+            border: 1px solid rgba(229, 172, 36, 0.3);
+            box-shadow: 0 0 15px rgba(229, 172, 36, 0.08);
+        }
+
+        .gold-border-glow:focus-within {
+            border-color: #e5ac24;
+            box-shadow: 0 0 20px rgba(229, 172, 36, 0.25);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #f6d365 0%, #e5ac24 100%);
+            color: #080a0f;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 0 20px rgba(229, 172, 36, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-gold:active {
+            transform: translateY(1px);
+        }
+
+        .card-panel {
+            background: rgba(13, 17, 26, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Wheel Spin CSS */
+        .wheel-container {
+            transition: transform 4s cubic-bezier(0.15, 0.99, 0.24, 0.99);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #06080d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e5ac24;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center selection:bg-gold-500 selection:text-black">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 max-w-xs sm:max-w-sm pointer-events-none"></div>
+
+    <!-- Main Mobile Layout Container -->
+    <div class="w-full max-w-md min-h-screen flex flex-col justify-between relative bg-bgDark shadow-2xl border-x border-slate-800/40">
+
+        <!-- ==================== PAGE 1: REGISTER FORM ==================== -->
+        <div id="view-register" class="flex-1 flex flex-col justify-center p-6 space-y-6">
+            <div class="text-center space-y-3">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-yellow-600/5 border border-gold-500/30 mb-2">
+                    <span class="text-2xl font-black text-gold-500 tracking-tighter">ZN</span>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-white">Buat Akun Baru</h1>
+                <p class="text-xs text-slate-400">Daftar untuk mengakses Simulasi Investasi Zenith Nexus</p>
+            </div>
+
+            <form id="form-register" onsubmit="handleRegister(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">NAMA LENGKAP</label>
+                    <div class="relative flex items-center">
+                        <i class="fa-regular fa-user absolute left-3.5 text-slate-500 text-sm"></i>
+                        <input type="text" id="reg-name" required placeholder="Contoh: Alex Pratama" 
+                            class="w-full pl-10 pr-4 py-3 bg-cardDark text-sm text-white rounded-xl border border-slate-800 focus:outline-none focus:border-gold-500 transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">ALAMAT GMAIL / EMAIL</label>
+                    <div class="relative flex items-center">
+                        <i class="fa-regular fa-envelope absolute left-3.5 text-slate-500 text-sm"></i>
+                        <input type="email" id="reg-email" required placeholder="nama@gmail.com" 
+                            class="w-full pl-10 pr-4 py-3 bg-cardDark text-sm text-white rounded-xl border border-slate-800 focus:outline-none focus:border-gold-500 transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">KODE REFERRAL (OPSIONAL)</label>
+                    <div class="relative flex items-center">
+                        <i class="fa-solid fa-gift absolute left-3.5 text-slate-500 text-sm"></i>
+                        <input type="text" id="reg-ref" placeholder="Contoh: NEXUS888" 
+                            class="w-full pl-10 pr-4 py-3 bg-cardDark text-sm text-white rounded-xl border border-slate-800 focus:outline-none focus:border-gold-500 transition-all uppercase tracking-wider">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">KATA SANDI</label>
+                    <div class="relative flex items-center">
+                        <i class="fa-solid fa-lock absolute left-3.5 text-slate-500 text-sm"></i>
+                        <input type="password" id="reg-password" required placeholder="••••••••" 
+                            class="w-full pl-10 pr-10 py-3 bg-cardDark text-sm text-white rounded-xl border border-slate-800 focus:outline-none focus:border-gold-500 transition-all">
+                        <button type="button" onclick="togglePasswordVisibility('reg-password', this)" class="absolute right-3.5 text-slate-500 hover:text-slate-300">
+                            <i class="fa-regular fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3.5 btn-gold rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-amber-500/10">
+                        DAFTAR AKUN
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center pt-2 border-t border-slate-800/60">
+                <p class="text-xs text-slate-400">
+                    Sudah memiliki akun? 
+                    <button onclick="switchView('view-login')" class="font-semibold text-gold-500 hover:underline">Masuk Sekarang</button>
+                </p>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE 2: LOGIN FORM ==================== -->
+        <div id="view-login" class="hidden flex-1 flex flex-col justify-center p-6 space-y-6">
+            <div class="text-center space-y-3">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-yellow-600/5 border border-gold-500/30 mb-2">
+                    <span class="text-2xl font-black text-gold-500 tracking-tighter">ZN</span>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-white">Selamat Datang Kembali</h1>
+                <p class="text-xs text-slate-400">Masuk untuk mengelola portofolio investasi Anda</p>
+            </div>
+
+            <form id="form-login" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">ALAMAT GMAIL / EMAIL</label>
+                    <div class="relative flex items-center">
+                        <i class="fa-regular fa-envelope absolute left-3.5 text-slate-500 text-sm"></i>
+                        <input type="email" id="login-email" required placeholder="nama@gmail.com" 
+                            class="w-full pl-10 pr-4 py-3 bg-cardDark text-sm text-white rounded-xl border border-slate-800 focus:outline-none focus:border-gold-500 transition-all">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">KATA SANDI</label>
+                    <div class="relative flex items-center">
+                        <i class="fa-solid fa-lock absolute left-3.5 text-slate-500 text-sm"></i>
+                        <input type="password" id="login-password" required placeholder="••••••••" 
+                            class="w-full pl-10 pr-10 py-3 bg-cardDark text-sm text-white rounded-xl border border-slate-800 focus:outline-none focus:border-gold-500 transition-all">
+                        <button type="button" onclick="togglePasswordVisibility('login-password', this)" class="absolute right-3.5 text-slate-500 hover:text-slate-300">
+                            <i class="fa-regular fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                    <label class="flex items-center space-x-2 text-slate-400 cursor-pointer">
+                        <input type="checkbox" class="rounded bg-slate-800 border-slate-700 text-gold-500 focus:ring-0">
+                        <span>Ingat Saya</span>
+                    </label>
+                    <a href="javascript:void(0)" onclick="showToast('Silakan gunakan fitur pendaftaran ulang jika lupa sandi.', 'info')" class="text-gold-500 hover:underline">Lupa Sandi?</a>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3.5 btn-gold rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-amber-500/10">
+                        MASUK DASHBOARD
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center pt-2 border-t border-slate-800/60">
+                <p class="text-xs text-slate-400">
+                    Belum punya akun? 
+                    <button onclick="switchView('view-register')" class="font-semibold text-gold-500 hover:underline">Daftar Sekarang</button>
+                </p>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE 3: DASHBOARD ==================== -->
+        <div id="view-dashboard" class="hidden flex-1 flex flex-col bg-bgDark pb-8">
+            
+            <!-- Dashboard Header -->
+            <header class="sticky top-0 z-30 bg-bgDark/90 backdrop-blur-md px-4 py-3.5 border-b border-slate-800/80 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 p-[1px] flex items-center justify-center">
+                        <div class="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
+                            <span class="text-amber-400 font-extrabold text-sm tracking-tighter">ZN</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-1.5">
+                            <h1 class="text-sm font-bold tracking-wide text-white uppercase" id="dash-app-title">ZENITH NEXUS</h1>
+                        </div>
+                        <div class="flex items-center space-x-1.5 text-[10px] text-slate-400 font-medium">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>SMART INVEST</span>
+                            <span>•</span>
+                            <span class="text-gold-500 uppercase">DEMO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <!-- Notification Bell -->
+                    <button onclick="toggleNotifications()" class="relative p-2.5 bg-cardDark rounded-xl border border-slate-800 text-slate-300 hover:text-gold-500 transition-colors">
+                        <i class="fa-regular fa-bell text-sm"></i>
+                        <span id="notif-badge" class="absolute top-2 right-2 w-2 h-2 rounded-full bg-rose-500"></span>
+                    </button>
+
+                    <!-- User Menu Toggle -->
+                    <button onclick="toggleUserDropdown()" class="p-2.5 bg-cardDark rounded-xl border border-slate-800 text-slate-300 hover:text-gold-500 transition-colors">
+                        <i class="fa-solid fa-user-circle text-sm"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- User Dropdown Overlay Menu -->
+            <div id="user-menu" class="hidden absolute top-16 right-4 z-40 w-56 bg-cardDark rounded-2xl border border-slate-700/60 p-3 shadow-2xl space-y-2">
+                <div class="px-2 py-1.5 border-b border-slate-800">
+                    <p class="text-xs font-bold text-white truncate" id="menu-user-name">Pengguna Demo</p>
+                    <p class="text-[10px] text-slate-400 truncate" id="menu-user-email">demo@gmail.com</p>
+                    <p class="text-[10px] text-gold-500 font-mono mt-0.5">Ref: <span id="menu-user-ref">N/A</span></p>
+                </div>
+                <button onclick="handleLogout()" class="w-full text-left px-2 py-2 text-xs font-semibold text-rose-400 hover:bg-rose-500/10 rounded-lg flex items-center space-x-2 transition-colors">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Keluar (Logout)</span>
+                </button>
+            </div>
+
+            <!-- Main Dashboard Body Container -->
+            <div class="p-4 space-y-4 flex-1">
+
+                <!-- Hero Section Card -->
+                <div class="relative overflow-hidden rounded-2xl card-panel p-5 border border-slate-800/80 shadow-xl">
+                    <!-- Subtle Glow Accent -->
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-[11px] font-bold text-amber-400">
+                            <i class="fa-solid fa-crown text-[10px]"></i>
+                            <span>ZN • SMART INVEST</span>
+                        </span>
+                        
+                        <!-- Simple Trend Graphic SVG -->
+                        <svg class="w-20 h-8 text-emerald-400" viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                            <path d="M 5 32 Q 25 28 40 18 T 70 22 T 95 8" />
+                        </svg>
+                    </div>
+
+                    <h2 class="text-xl font-extrabold tracking-tight text-white mb-1">
+                        INVEST TODAY <br>
+                        <span class="gold-gradient-text">BUILD TOMORROW</span>
+                    </h2>
+
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Dashboard simulasi investasi untuk latihan antarmuka web dengan kalkulasi realtime.
+                    </p>
+
+                    <div class="flex items-center justify-between pt-3 border-t border-slate-800/70">
+                        <span class="text-xs font-semibold text-slate-400">Portofolio Realtime:</span>
+                        <span class="text-xl font-extrabold text-gold-400 tracking-tight" id="val-portfolio">$1,247.95</span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Section -->
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-1.5 px-1">
+                        <i class="fa-solid fa-bolt text-amber-400 text-xs"></i>
+                        <h3 class="text-xs font-bold tracking-wider text-slate-300 uppercase">QUICK ACTIONS</h3>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <!-- Kode Hadiah Card -->
+                        <div onclick="openModal('modal-code')" class="card-panel p-3.5 rounded-2xl hover:border-amber-500/30 transition-all cursor-pointer group relative overflow-hidden">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 group-hover:bg-amber-500/20 transition-colors">
+                                    <i class="fa-solid fa-gift text-lg"></i>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all"></i>
+                            </div>
+                            <h4 class="text-xs font-bold text-white mb-0.5">KODE HADIAH</h4>
+                            <p class="text-[10px] text-slate-400 leading-tight">Masukkan kode bonus demo.</p>
+                        </div>
+
+                        <!-- Daily Check-In Card -->
+                        <div onclick="handleCheckIn()" class="card-panel p-3.5 rounded-2xl hover:border-amber-500/30 transition-all cursor-pointer group relative overflow-hidden">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 group-hover:bg-amber-500/20 transition-colors">
+                                    <i class="fa-solid fa-stopwatch text-lg"></i>
+                                </div>
+                                <span class="px-2 py-0.5 bg-amber-500/20 border border-amber-500/30 text-amber-400 font-extrabold text-[10px] rounded-full">+$50</span>
+                            </div>
+                            <h4 class="text-xs font-bold text-white mb-0.5">CHECK-IN</h4>
+                            <p class="text-[10px] text-slate-400 leading-tight">Simulasi check-in harian.</p>
+                        </div>
+                    </div>
+
+                    <!-- Lucky Spin Card Full Width -->
+                    <div onclick="openModal('modal-spin')" class="card-panel p-3.5 rounded-2xl hover:border-amber-500/30 transition-all cursor-pointer group flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-700/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                                <i class="fa-solid fa-dharmachakra text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-white">LUCKY SPIN</h4>
+                                <p class="text-[10px] text-slate-400">Demo interaksi UI — tanpa hadiah uang.</p>
+                            </div>
+                        </div>
+                        <div class="w-7 h-7 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400 group-hover:text-amber-400 group-hover:bg-amber-500/10 transition-colors">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo Account Statistics Grid -->
+                <div class="space-y-2 pt-2">
+                    <div class="flex items-center justify-between px-1">
+                        <div class="flex items-center space-x-1.5">
+                            <i class="fa-solid fa-chart-pie text-amber-400 text-xs"></i>
+                            <h3 class="text-xs font-bold tracking-wider text-slate-300 uppercase">STATISTIK AKUN DEMO</h3>
+                        </div>
+                        <button onclick="resetDemoData()" class="text-[11px] text-slate-400 hover:text-rose-400 underline transition-colors">
+                            Reset Data
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <!-- Stat 1 -->
+                        <div class="card-panel p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-building-columns text-sm"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-[10px] font-medium text-slate-400 truncate">Total Deposit</p>
+                                <p class="text-xs font-bold text-cyan-accent truncate" id="stat-deposit">$1,000.00</p>
+                            </div>
+                        </div>
+
+                        <!-- Stat 2 -->
+                        <div class="card-panel p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-chart-line text-sm"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-[10px] font-medium text-slate-400 truncate">Total Investment</p>
+                                <p class="text-xs font-bold text-cyan-accent truncate" id="stat-invest">$200.00</p>
+                            </div>
+                        </div>
+
+                        <!-- Stat 3 -->
+                        <div class="card-panel p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-arrow-trend-up text-sm"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-[10px] font-medium text-slate-400 truncate">Total Profit</p>
+                                <p class="text-xs font-bold text-emerald-400 truncate" id="stat-profit">$47.95</p>
+                            </div>
+                        </div>
+
+                        <!-- Stat 4 -->
+                        <div class="card-panel p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-credit-card text-sm"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-[10px] font-medium text-slate-400 truncate">Total Withdraw</p>
+                                <p class="text-xs font-bold text-cyan-accent truncate" id="stat-withdraw">$0.00</p>
+                            </div>
+                        </div>
+
+                        <!-- Stat 5 -->
+                        <div class="card-panel p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-user-group text-sm"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-[10px] font-medium text-slate-400 truncate">Total Reference</p>
+                                <p class="text-xs font-bold text-white truncate" id="stat-ref">3</p>
+                            </div>
+                        </div>
+
+                        <!-- Stat 6 -->
+                        <div class="card-panel p-3 rounded-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-trophy text-sm"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <p class="text-[10px] font-medium text-slate-400 truncate">Team Wins</p>
+                                <p class="text-xs font-bold text-cyan-accent truncate" id="stat-team">$150.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer info -->
+            <footer class="mt-auto pt-4 text-center text-[10px] text-slate-500 border-t border-slate-800/40">
+                Zenith Nexus Smart Invest &copy; 2026. Demo UI Interactive Simulation.
+            </footer>
+        </div>
+    </div>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Promo Code Modal -->
+    <div id="modal-code" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="w-full max-w-xs bg-cardDark border border-slate-700/80 rounded-2xl p-5 space-y-4 shadow-2xl animate-fade-in">
+            <div class="flex justify-between items-center">
+                <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-gift text-gold-500"></i>
+                    <span>KLAIM KODE HADIAH</span>
+                </h3>
+                <button onclick="closeModal('modal-code')" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-400">Masukkan kode demo promo Anda untuk mendapatkan saldo bonus simulasi.</p>
+            <input type="text" id="input-promo-code" placeholder="Contoh: BONUS100" class="w-full px-3 py-2.5 bg-bgDark border border-slate-700 rounded-xl text-xs text-white uppercase focus:outline-none focus:border-gold-500">
+            <button onclick="claimPromoCode()" class="w-full py-2.5 btn-gold rounded-xl text-xs font-bold">KLAIM BONUS</button>
+        </div>
+    </div>
+
+    <!-- Lucky Spin Modal -->
+    <div id="modal-spin" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+        <div class="w-full max-w-xs bg-cardDark border border-slate-700/80 rounded-2xl p-5 space-y-4 text-center shadow-2xl">
+            <div class="flex justify-between items-center text-left">
+                <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-dharmachakra text-gold-500"></i>
+                    <span>LUCKY SPIN DEMO</span>
+                </h3>
+                <button onclick="closeModal('modal-spin')" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Spin Wheel Visual -->
+            <div class="relative w-48 h-48 mx-auto flex items-center justify-center my-2">
+                <!-- Wheel Pointer -->
+                <div class="absolute -top-2 z-20 text-gold-500 text-lg">
+                    <i class="fa-solid fa-location-pin fa-rotate-180"></i>
+                </div>
+                <!-- Rotaing Wheel -->
+                <div id="wheel" class="wheel-container w-44 h-44 rounded-full border-4 border-amber-500/40 relative overflow-hidden bg-gradient-to-tr from-amber-600 via-yellow-500 to-amber-700 flex items-center justify-center text-black font-black text-xs shadow-inner">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="rotate-0 absolute -translate-y-14">$10</span>
+                        <span class="rotate-45 absolute translate-x-10 -translate-y-10">$50</span>
+                        <span class="rotate-90 absolute translate-x-14">$0</span>
+                        <span class="rotate-135 absolute translate-x-10 translate-y-10">$100</span>
+                        <span class="rotate-180 absolute translate-y-14">$25</span>
+                        <span class="rotate-225 absolute -translate-x-10 translate-y-10">$5</span>
+                        <span class="rotate-270 absolute -translate-x-14">$200</span>
+                        <span class="rotate-315 absolute -translate-x-10 -translate-y-10">$15</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-gold-500 z-10 flex items-center justify-center text-gold-500 font-bold text-[10px]">
+                        ZN
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-spin" onclick="spinWheel()" class="w-full py-2.5 btn-gold rounded-xl text-xs font-bold">PUTAR RODA</button>
+        </div>
+    </div>
+
+    <!-- Notifications Drawer -->
+    <div id="modal-notif" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+        <div class="w-full max-w-xs bg-cardDark border border-slate-700/80 rounded-2xl p-4 space-y-3">
+            <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                <h3 class="text-xs font-bold text-white">Pemberitahuan Sistem</h3>
+                <button onclick="toggleNotifications()" class="text-slate-400 hover:text-white text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="space-y-2 max-h-60 overflow-y-auto text-xs text-slate-300">
+                <div class="p-2 bg-bgDark/60 rounded-lg border border-slate-800">
+                    <p class="font-bold text-amber-400 text-[11px]">Selamat Datang di Zenith Nexus!</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Simulasi siap digunakan. Silakan uji coba fitur Check-in dan Kode Hadiah.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript Logic Core -->
+    <script>
+        // State Management Default
+        const DEFAULT_STATE = {
+            user: null,
+            portfolio: 1247.95,
+            deposit: 1000.00,
+            investment: 200.00,
+            profit: 47.95,
+            withdraw: 0.00,
+            reference: 3,
+            teamWins: 150.00,
+            isCheckedInToday: false,
+            usedPromoCodes: []
+        };
+
+        let appState = { ...DEFAULT_STATE };
+        let currentWheelRotation = 0;
+
+        // On Document Ready
+        window.onload = function() {
+            loadSavedState();
+            if (appState.user) {
+                switchView('view-dashboard');
+                updateDashboardUI();
+            } else {
+                switchView('view-register');
+            }
+        };
+
+        // UI View Switcher
+        function switchView(viewId) {
+            ['view-register', 'view-login', 'view-dashboard'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === viewId) {
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                }
+            });
+            // Close dropdown if active
+            document.getElementById('user-menu')?.classList.add('hidden');
+        }
+
+        // LocalStorage Helpers
+        function saveState() {
+            localStorage.setItem('zenith_nexus_state', JSON.stringify(appState));
+        }
+
+        function loadSavedState() {
+            const saved = localStorage.getItem('zenith_nexus_state');
+            if (saved) {
+                try {
+                    appState = JSON.parse(saved);
+                } catch (e) {
+                    console.error("Error loading state", e);
+                }
+            }
+        }
+
+        // Registration Logic
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const ref = document.getElementById('reg-ref').value.trim() || 'ORGANIC';
+            const pass = document.getElementById('reg-password').value;
+
+            if (!name || !email || !pass) {
+                showToast('Harap isi semua bidang wajib!', 'error');
+                return;
+            }
+
+            // Save user profile into state
+            appState.user = {
+                name: name,
+                email: email,
+                referralCode: ref
+            };
+
+            saveState();
+            updateDashboardUI();
+            switchView('view-dashboard');
+            showToast(`Selamat datang, ${name}! Akun berhasil dibuat.`, 'success');
+        }
+
+        // Login Logic
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const pass = document.getElementById('login-password').value;
+
+            if (!email || !pass) {
+                showToast('Harap isi Email dan Kata Sandi!', 'error');
+                return;
+            }
+
+            // If user state already exists, check email match, or create user fallback
+            if (!appState.user || appState.user.email !== email) {
+                appState.user = {
+                    name: email.split('@')[0],
+                    email: email,
+                    referralCode: 'MEMBER'
+                };
+            }
+
+            saveState();
+            updateDashboardUI();
+            switchView('view-dashboard');
+            showToast('Berhasil masuk ke Dashboard!', 'success');
+        }
+
+        // Logout Logic
+        function handleLogout() {
+            appState.user = null;
+            saveState();
+            switchView('view-login');
+            showToast('Anda telah keluar dari akun.', 'info');
+        }
+
+        // UI Renderer for Dashboard
+        function updateDashboardUI() {
+            if (!appState.user) return;
+
+            // Header & Menu updates
+            document.getElementById('menu-user-name').innerText = appState.user.name;
+            document.getElementById('menu-user-email').innerText = appState.user.email;
+            document.getElementById('menu-user-ref').innerText = appState.user.referralCode;
+
+            // Balance updates
+            document.getElementById('val-portfolio').innerText = `$${appState.portfolio.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('stat-deposit').innerText = `$${appState.deposit.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('stat-invest').innerText = `$${appState.investment.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('stat-profit').innerText = `$${appState.profit.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('stat-withdraw').innerText = `$${appState.withdraw.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('stat-ref').innerText = appState.reference;
+            document.getElementById('stat-team').innerText = `$${appState.teamWins.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+        }
+
+        // Check-in Action
+        function handleCheckIn() {
+            if (appState.isCheckedInToday) {
+                showToast('Anda sudah klaim Check-In harian hari ini!', 'info');
+                return;
+            }
+
+            appState.portfolio += 50.00;
+            appState.profit += 50.00;
+            appState.isCheckedInToday = true;
+            saveState();
+            updateDashboardUI();
+            showToast('Bonus Check-In +$50 berhasil ditambahkan!', 'success');
+        }
+
+        // Promo Code Action
+        function claimPromoCode() {
+            const input = document.getElementById('input-promo-code');
+            const code = input.value.trim().toUpperCase();
+
+            if (!code) {
+                showToast('Masukkan kode promo terlebih dahulu!', 'error');
+                return;
+            }
+
+            if (appState.usedPromoCodes.includes(code)) {
+                showToast('Kode ini sudah pernah diklaim!', 'error');
+                return;
+            }
+
+            let bonus = 0;
+            if (code === 'BONUS100' || code === 'ZENITH100') {
+                bonus = 100;
+            } else if (code === 'NEXUS888' || code === 'PROMO50') {
+                bonus = 50;
+            } else {
+                bonus = 25; // Default valid code for demo
+            }
+
+            appState.portfolio += bonus;
+            appState.deposit += bonus;
+            appState.usedPromoCodes.push(code);
+            saveState();
+            updateDashboardUI();
+            closeModal('modal-code');
+            input.value = '';
+            showToast(`Kode ${code} berhasil! Saldo +$${bonus} ditambahkan.`, 'success');
+        }
+
+        // Wheel Spin Logic
+        function spinWheel() {
+            const wheel = document.getElementById('wheel');
+            const btn = document.getElementById('btn-spin');
+            
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            const rewards = [10, 50, 0, 100, 25, 5, 200, 15];
+            const randomIndex = Math.floor(Math.random() * rewards.length);
+            const rewardAmount = rewards[randomIndex];
+
+            // Calculate rotation degrees (360 * 5 full spins + slice offset)
+            const degreesPerSlice = 360 / rewards.length;
+            const targetDegree = 360 * 5 + (randomIndex * degreesPerSlice);
+            
+            currentWheelRotation += targetDegree;
+            wheel.style.transform = `rotate(${currentWheelRotation}deg)`;
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+                if (rewardAmount > 0) {
+                    appState.portfolio += rewardAmount;
+                    appState.profit += rewardAmount;
+                    saveState();
+                    updateDashboardUI();
+                    showToast(`Selamat! Anda memenangkan $${rewardAmount} dari Lucky Spin!`, 'success');
+                } else {
+                    showToast('Kurang beruntung, coba lagi nanti!', 'info');
+                }
+                closeModal('modal-spin');
+            }, 4000);
+        }
+
+        // Reset All Data
+        function resetDemoData() {
+            const currentUser = appState.user;
+            appState = { ...DEFAULT_STATE, user: currentUser };
+            saveState();
+            updateDashboardUI();
+            showToast('Data akun demo telah direset ke setelan awal.', 'info');
+        }
+
+        // Password Visibility Toggle
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Notification Overlay Toggle
+        function toggleNotifications() {
+            const notif = document.getElementById('modal-notif');
+            notif.classList.toggle('hidden');
+            document.getElementById('notif-badge')?.classList.add('hidden');
+        }
+
+        // User Dropdown Menu Toggle
+        function toggleUserDropdown() {
+            const menu = document.getElementById('user-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modal Helpers
+        function openModal(id) {
+            document.getElementById(id)?.classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id)?.classList.add('hidden');
+        }
+
+        // Toast Alert System
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let bgClass = 'bg-slate-800 border-slate-700 text-white';
+            let icon = 'fa-circle-info text-blue-400';
+
+            if (type === 'success') {
+                bgClass = 'bg-cardDark border-amber-500/50 text-amber-300';
+                icon = 'fa-circle-check text-amber-400';
+            } else if (type === 'error') {
+                bgClass = 'bg-cardDark border-rose-500/50 text-rose-300';
+                icon = 'fa-triangle-exclamation text-rose-400';
+            }
+
+            toast.className = `p-3.5 rounded-xl border shadow-2xl flex items-center space-x-3 text-xs font-semibold transform transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto ${bgClass}`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-base"></i>
+                <span class="flex-1">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Animate in
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            // Auto dismiss after 3s
+            setTimeout(() => {
+                toast.classList.add('opacity-0', '-translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
