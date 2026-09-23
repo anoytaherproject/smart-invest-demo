@@ -890,5 +890,30 @@
             animateChart();
         }
     </script>
+    <script>
+    // 1. Cek apakah pengguna sudah daftar/login
+    const savedData = localStorage.getItem('userData');
+    if (!savedData) {
+        // Jika belum ada data, lempar kembali ke halaman daftar
+        window.location.href = 'daftar.html';
+    } else {
+        // 2. Tampilkan Nama dan Email pengguna yang terdaftar ke Dashboard
+        const user = JSON.parse(savedData);
+        const nameDisplay = document.getElementById('user-display-name');
+        if (nameDisplay && user.name) {
+            nameDisplay.innerText = user.name;
+        }
+    }
+
+    // 3. Fungsi Logout
+    function handleLogout() {
+        if (confirm('Apakah Anda yakin ingin keluar?')) {
+            // Hapus data login dari browser
+            localStorage.removeItem('userData');
+            // Kembali ke halaman pendaftaran
+            window.location.href = 'daftar.html';
+        }
+    }
+</script>
 </body>
 </html>
