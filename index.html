@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="id" class="dark">
 <head>
+    <script>
+    // Cek apakah pengguna sudah pernah daftar/login
+    if (!localStorage.getItem('userData')) {
+        // Jika belum, alihkan ke halaman daftar
+        window.location.href = 'daftar.html';
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ZENITH NEXUS — Ultra Luxury Smart Invest Dashboard</title>
