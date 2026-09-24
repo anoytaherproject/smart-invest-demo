@@ -563,43 +563,116 @@
         </div>
 
         <!-- MODAL WITHDRAW / PENARIKAN -->
-        <div id="withdrawModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
-            <div class="glass-card w-full max-w-xs p-5 rounded-2xl border border-red-500/30 relative space-y-4">
-                <button onclick="closeModal('withdrawModal')" class="absolute top-3.5 right-3.5 text-gray-400 hover:text-white">
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
+<div id="withdrawModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden">
+    <div class="glass-card w-full max-w-xs p-5 rounded-2xl">
 
-                <div class="text-center">
-                    <h4 class="text-xs font-bold text-white">Menu Penarikan (Withdraw)</h4>
-                    <p class="text-[10px] text-gray-400 mt-1">Tarik saldo profit ke rekening bank / e-wallet</p>
-                </div>
+        <button onclick="closeModal('withdrawModal')"
+            class="float-right text-white">
+            <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
 
-                <div class="space-y-2">
-                    <div>
-                        <label class="text-[10px] text-gray-400 mb-1 block">Metode Pembayaran:</label>
-                        <select id="wdBank" class="w-full px-3 py-2 bg-obsidian border border-gray-700 rounded-xl text-xs text-white focus:outline-none focus:border-yellow-400">
-                            <option value="BCA">Bank BCA</option>
-                            <option value="Mandiri">Bank Mandiri</option>
-                            <option value="BRI">Bank BRI</option>
-                            <option value="DANA">DANA</option>
-                            <option value="OVO">OVO</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="text-[10px] text-gray-400 mb-1 block">Nomor Rekening / E-Wallet:</label>
-                        <input type="text" id="wdAccount" placeholder="1234567890" class="w-full px-3.5 py-2 bg-obsidian border border-gray-700 rounded-xl text-xs text-white focus:outline-none focus:border-yellow-400">
-                    </div>
-
-                    <div>
-                        <label class="text-[10px] text-gray-400 mb-1 block">Jumlah Penarikan (Rp):</label>
-                        <input type="number" id="wdAmt" value="100000" class="w-full px-3.5 py-2 bg-obsidian border border-gray-700 rounded-xl text-xs font-bold text-white focus:outline-none focus:border-yellow-400">
-                    </div>
-                </div>
-
-                <button onclick="submitWithdraw()" class="w-full bg-gradient-to-r from-red-600 to-amber-600 text-white py-2.5 rounded-xl text-xs font-extrabold uppercase hover:opacity-90 transition-opacity">Ajukan Penarikan</button>
-            </div>
+        <div class="text-center mb-4">
+            <h4 class="text-xs font-bold text-white">
+                WITHDRAW & PAKET
+            </h4>
+            <p class="text-[10px] text-gray-400 mt-1">
+                Pilih nominal penarikan
+            </p>
         </div>
+
+        <div class="space-y-2">
+
+            <!-- BRONZE -->
+            <div onclick="selectWithdrawPackage(500000)"
+                class="cursor-pointer p-3 rounded-xl bg-white/5 border border-white/10">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-xs font-bold text-white">Bronze</div>
+                        <div class="text-[10px] text-gray-400">
+                            Penarikan Rp500.000
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-yellow-400">
+                        Rp500.000
+                    </span>
+                </div>
+            </div>
+
+            <!-- SILVER -->
+            <div onclick="selectWithdrawPackage(1000000)"
+                class="cursor-pointer p-3 rounded-xl bg-white/5 border border-white/10">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-xs font-bold text-white">Silver</div>
+                        <div class="text-[10px] text-gray-400">
+                            Penarikan Rp1.000.000
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-gray-300">
+                        Rp1.000.000
+                    </span>
+                </div>
+            </div>
+
+            <!-- GOLD -->
+            <div onclick="selectWithdrawPackage(2500000)"
+                class="cursor-pointer p-3 rounded-xl bg-white/5 border border-white/10">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-xs font-bold text-white">Gold</div>
+                        <div class="text-[10px] text-gray-400">
+                            Penarikan Rp2.500.000
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-yellow-300">
+                        Rp2.500.000
+                    </span>
+                </div>
+            </div>
+
+            <!-- PLATINUM -->
+            <div onclick="selectWithdrawPackage(5000000)"
+                class="cursor-pointer p-3 rounded-xl bg-white/5 border border-white/10">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-xs font-bold text-white">Platinum</div>
+                        <div class="text-[10px] text-gray-400">
+                            Penarikan Rp5.000.000
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-blue-300">
+                        Rp5.000.000
+                    </span>
+                </div>
+            </div>
+
+            <!-- DIAMOND -->
+            <div onclick="selectWithdrawPackage(10000000)"
+                class="cursor-pointer p-3 rounded-xl bg-white/5 border border-white/10">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-xs font-bold text-white">Diamond</div>
+                        <div class="text-[10px] text-gray-400">
+                            Penarikan Rp10.000.000
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-purple-300">
+                        Rp10.000.000
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-4 text-center">
+            <button onclick="confirmWithdrawPackage()"
+                class="w-full py-3 rounded-xl bg-green-600 text-white text-xs font-bold">
+                KONFIRMASI PENARIKAN
+            </button>
+        </div>
+
+    </div>
+</div>
 
         <!-- TOAST NOTIFICATION -->
         <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 max-w-xs w-full px-4 py-3 rounded-xl glass-card border border-yellow-500/30 transition-all duration-300 transform -translate-y-12 opacity-0 flex items-center space-x-3 pointer-events-none">
@@ -908,7 +981,43 @@
             }
 
             animateChart();
-        }
+        }// ===== PAKET WITHDRAW =====
+let selectedWithdraw = 0;
+
+function selectWithdrawPackage(amount) {
+    selectedWithdraw = amount;
+
+    showToast(
+        `Paket withdraw dipilih: Rp${amount.toLocaleString('id-ID')}`
+    );
+}
+
+function confirmWithdrawPackage() {
+    if (!selectedWithdraw || selectedWithdraw <= 0) {
+        showToast('Pilih paket withdraw terlebih dahulu');
+        return;
+    }
+
+    if (state.profit < selectedWithdraw) {
+        showToast(
+            `Saldo profit tidak cukup untuk withdraw Rp${selectedWithdraw.toLocaleString('id-ID')}`
+        );
+        return;
+    }
+
+    state.profit -= selectedWithdraw;
+
+    updateStatsUI();
+    saveState();
+
+    closeModal('withdrawModal');
+
+    showToast(
+        `Withdraw Rp${selectedWithdraw.toLocaleString('id-ID')} berhasil diproses`
+    );
+
+    selectedWithdraw = 0;
+}
     </script>
 </body>
     </html>
