@@ -139,10 +139,10 @@
         }
 
         .glass-card {
-            background: rgba(10, 14, 23, 0.75);
+            background: rgba(10, 14, 23, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.15);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
@@ -199,7 +199,7 @@
     </div>
 
     <!-- MAIN APP WRAPPER -->
-    <div class="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col pb-24 border-x border-yellow-500/10 bg-obsidian/60 backdrop-blur-3xl shadow-2xl">
+    <div class="relative z-10 w-full max-w-md mx-auto min-h-screen flex flex-col pb-28 border-x border-yellow-500/10 bg-obsidian/60 backdrop-blur-3xl shadow-2xl">
 
         <!-- HEADER -->
         <header class="sticky top-0 z-40 glass-card border-b border-yellow-500/15 px-4 py-3.5 flex items-center justify-between">
@@ -599,27 +599,27 @@
             <div id="toastMsg" class="text-xs font-medium text-white"></div>
         </div>
 
-        <!-- BOTTOM NAVIGATION BAR -->
-        <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-md mx-auto glass-card border-t border-yellow-500/20 px-6 py-2.5 flex items-center justify-around">
-            <button onclick="switchTab('home')" id="nav-home" class="nav-item flex flex-col items-center space-y-1 text-yellow-400">
-                <i class="fa-solid fa-house text-sm"></i>
-                <span class="text-[9px] font-bold tracking-wider uppercase">Home</span>
-            </button>
-            <button onclick="switchTab('investing')" id="nav-investing" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
-                <i class="fa-solid fa-chart-simple text-sm"></i>
-                <span class="text-[9px] font-bold tracking-wider uppercase">Invest</span>
-            </button>
-            <button onclick="switchTab('team')" id="nav-team" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
-                <i class="fa-solid fa-users text-sm"></i>
-                <span class="text-[9px] font-bold tracking-wider uppercase">Tim</span>
-            </button>
-            <button onclick="switchTab('menu')" id="nav-menu" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
-                <i class="fa-solid fa-bars text-sm"></i>
-                <span class="text-[9px] font-bold tracking-wider uppercase">Menu</span>
-            </button>
-        </nav>
-
     </div>
+
+    <!-- BOTTOM NAVIGATION BAR (Posisi Terpisah untuk Kepastian Tampilan) -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 max-w-md mx-auto glass-card border-t border-yellow-500/30 px-6 py-3 flex items-center justify-around bg-obsidian/90 backdrop-blur-xl">
+        <button onclick="switchTab('home')" id="nav-home" class="nav-item flex flex-col items-center space-y-1 text-yellow-400">
+            <i class="fa-solid fa-house text-base"></i>
+            <span class="text-[10px] font-bold tracking-wider uppercase">Home</span>
+        </button>
+        <button onclick="switchTab('investing')" id="nav-investing" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
+            <i class="fa-solid fa-chart-simple text-base"></i>
+            <span class="text-[10px] font-bold tracking-wider uppercase">Invest</span>
+        </button>
+        <button onclick="switchTab('team')" id="nav-team" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
+            <i class="fa-solid fa-users text-base"></i>
+            <span class="text-[10px] font-bold tracking-wider uppercase">Tim</span>
+        </button>
+        <button onclick="switchTab('menu')" id="nav-menu" class="nav-item flex flex-col items-center space-y-1 text-gray-500 hover:text-yellow-400">
+            <i class="fa-solid fa-bars text-base"></i>
+            <span class="text-[10px] font-bold tracking-wider uppercase">Menu</span>
+        </button>
+    </nav>
 
     <script>
         let state = {
@@ -840,7 +840,7 @@
         }
 
         function loadState() {
-            const saved = localStorage.setItem ? localStorage.getItem('zenith_ultra_state') : null;
+            const saved = localStorage.getItem('zenith_ultra_state');
             if (saved) {
                 try { state = { ...state, ...JSON.parse(saved) }; } catch(e){}
             }
